@@ -1,0 +1,36 @@
+﻿body {
+}
+
+.MainSection {
+	float: left;
+	width: 100%;
+	background-color: #f5f5f5;
+	border-radius: 3px;
+	/*margin: 5px;*/
+		background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255, 0.9);
+	transition: 0.5s;
+}
+
+	.MainSection .Heading {
+		background-color: #7ebad3;
+		border-radius: 3px 3px 0 0;
+		padding: 5px;
+		font-size: 16px;
+		font-variant: small-caps;
+		color: #fff;
+	}
+
+	.MainSection a {
+		text-decoration: none;
+		font-size: 9.5pt;
+		color: #4B6375;
+	}
+
+		.MainSection a:hover {
+			color: #BB1F1F;
+		}
+
+	.MainSection li {
+		font-size: 11pt;
+	}

@@ -1,0 +1,401 @@
+﻿body {
+}
+
+/* Filter Styles*/
+.floatThead-floatContainer {
+	left: inherit !important;
+}
+
+.table td:last-child {
+	text-align: right;
+}
+
+.filters {
+	background-color: #2A3F54;
+}
+
+.filterable .panel-heading .pull-right {
+	margin-top: -20px;
+}
+
+.filterable .filters input[disabled] {
+	background-color: transparent;
+	border: none;
+	cursor: auto;
+	box-shadow: none;
+	padding: 0;
+	height: auto;
+}
+
+	.filterable .filters input[disabled]::-webkit-input-placeholder {
+		color: #2A3F54;
+	}
+
+	.filterable .filters input[disabled]::-moz-placeholder {
+		color: #000;
+	}
+
+	.filterable .filters input[disabled]:-ms-input-placeholder {
+		color: #2A3F54;
+	}
+
+select, input[type='text'], input[type='password'], input[type='checkbox'], input[type='file'], textarea {
+	box-shadow: none;
+	border: 1px solid #2A3D58;
+	padding: 7px;
+	background-color: transparent;
+	font: inherit;
+	line-height: 1em;
+	margin-top: 0px;
+	border-radius: 4px;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+	.ButtonClearResponsive {
+		float: left !important;
+		margin-left: 0px;
+		margin-top: 15px;
+	}
+
+	.NegMarginRespons {
+		margin-left: -18px;
+	}
+
+	select, input[type='text'], input[type='password'], input[type='checkbox'], input[type='file'], textarea {
+		margin: 5px;
+	}
+
+	.StatusMargin {
+		margin-left: 6px;
+	}
+
+	.FunderMargin {
+		margin-left: 2px;
+	}
+
+	.PaddingFilterFrame15 {
+		padding-left: 15px;
+	}
+}
+
+.MarginButtonBottom0 {
+	margin-bottom: 0px;
+}
+
+@media screen and (min-width: 1250px) and (max-width: 1500px) {
+	.FlexResponsive {
+		display: flex;
+	}
+}
+
+.FilterWidth {
+	width: 55%;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+	font-size: 14px;
+	color: #000;
+	font-weight: 500;
+	box-shadow: none;
+}
+
+input, input[type='text'], input[type='password'], input[type='checkbox'], input[type='file'], textarea.form-control {
+	border-radius: 2px;
+	box-shadow: none;
+}
+
+	input, input[type='text'] {
+		color: #000;
+		padding-left: 10px;
+		height: 34px;
+		font-size: 14px;
+		box-shadow: none;
+		font-weight: 500;
+		text-align: left;
+	}
+
+		input, input[type='text'] [disabled] {
+			cursor: pointer;
+		}
+
+.input-group {
+	width: 10%;
+	margin-top: 10px;
+	margin-right: 10px;
+	float: right;
+}
+
+	.input-group .form-control {
+		width: 190px;
+	}
+
+		.input-group .form-control:last-child, .input-group-addon:last-child, .input-group-btn:first-child > .btn-group:not(:first-child) > .btn, .input-group-btn:first-child > .btn:not(:first-child), .input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group > .btn, .input-group-btn:last-child > .dropdown-toggle {
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+		}
+
+.table_Header {
+	color: #2A3F54;
+	padding-left: 15px;
+}
+
+.panel > .table-bordered > thead > tr:first-child > th, .panel > .table-responsive > .table-bordered > tbody > tr:first-child > th, .panel > .table-responsive > .table-bordered > thead > tr:first-child > th {
+	color: #2A3F54;
+	padding-left: 20px;
+}
+
+.panel-footer {
+	padding: 0px 0px;
+	background-color: #fff;
+}
+
+.pagination > li > a, .pagination > li > span {
+	color: #2A3F54;
+}
+
+	.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
+		background-color: #ddd;
+	}
+
+i.fa.fa-edit {
+	text-align: center;
+}
+
+td {
+	cursor: pointer;
+	color: black;
+}
+
+.table {
+	margin-bottom: 0px;
+}
+
+	.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+		padding: 2px;
+		vertical-align: middle;
+		border-top: 1px solid #ddd;
+		text-align: left;
+	}
+
+.TableSection {
+	border: #2A3F54 solid 1px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-radius: 0px;
+	margin-top: 0px;
+}
+
+thead {
+	background: #f6f6f6;
+	font-weight: 600;
+}
+
+.SectionHeader {
+	padding-left: 15px;
+	padding-bottom: 10px;
+	font-weight: 300;
+	color: #2A3F54;
+	font-size: 18px;
+}
+
+.panel > .table-responsive {
+	margin-bottom: 0;
+	border: 0;
+	padding: 15px;
+	margin-bottom: 15px;
+}
+
+label {
+	display: inline-block;
+	max-width: 100%;
+	margin-bottom: 0px;
+	font-weight: 300;
+	color: #000;
+	font-weight: 500;
+}
+
+.input-group[class*=col-] {
+	padding-top: 4px;
+}
+
+.NoPaddingLeftRight {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.TablePadding {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.Grid thead th {
+	padding: 5px 3px;
+	font-weight: 500;
+	color: #222;
+	text-align: center !important;
+	color: #000;
+}
+/*******combo box********/
+
+.ComboBox.Blank {
+	color: #bbb !important;
+}
+
+.ComboDropDown {
+	position: absolute;
+	max-height: 400px;
+	background-color: #ffffff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	display: none;
+	z-index: 10004;
+	overflow-y: hidden;
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+}
+
+
+	.ComboDropDown table {
+		border-spacing: 0px;
+	}
+
+	.ComboDropDown tr, .ComboDropDown div div {
+		background: #fff;
+		padding: 5px;
+		overflow: hidden;
+		white-space: nowrap;
+		padding-right: 5px;
+		cursor: pointer;
+	}
+
+	.ComboDropDown td {
+		border-left: 1px solid #ccc;
+		padding: 2px 4px 2px 4px;
+	}
+
+	.ComboDropDown th {
+		padding: 2px;
+		cursor: pointer;
+		background: #bbb;
+		color: #fff;
+		font-size: 0.9em;
+	}
+
+	.ComboDropDown .ComboChild {
+		padding-left: 5px;
+	}
+
+	.ComboDropDown .ComboGroup, .ComboDropDown .ComboGroup:hover {
+		background: #bbb;
+		color: #fff;
+		font-weight: bold;
+		cursor: default;
+	}
+
+	.ComboDropDown tr:hover, .ComboDropDown div div:hover {
+		text-decoration: none !important;
+		color: #ffffff !important;
+		background-color: #bbb !important;
+	}
+
+
+	.ComboDropDown .Selected {
+		text-decoration: none !important;
+		color: #ffffff !important;
+		background-color: #f6f6f6 !important;
+	}
+
+	.ComboDropDown .Selected {
+		background-repeat: repeat-x !important;
+		background-image: linear-gradient(to bottom,#888,#888) !important;
+	}
+
+	.ComboDropDown tr:hover, .ComboDropDown div div:hover {
+		background-repeat: repeat-x !important;
+		color: #555 !important;
+		background-image: linear-gradient(to bottom,#f6f6f6,#f6f6f6) !important;
+	}
+
+.form-control.ComboBox .arrow-down.glyphicon.glyphicon-triangle-bottom {
+	width: 0;
+	height: 0;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #000;
+}
+
+.NumericEditor {
+	text-align: right;
+}
+
+td > span {
+	color: black;
+}
+
+.TableButton {
+	background: #7a7a7a;
+	color: white;
+}
+
+	.TableButton:hover {
+		background: #fff;
+		color: #239600;
+		border-color: #239600;
+	}
+
+	.TableButton:focus {
+		background: #fff;
+		color: #239600;
+		border-color: #239600;
+	}
+
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+	width: 49%;
+	color: black;
+	background: white;
+	font-size: 13px;
+}
+
+.Grid {
+	border-spacing: 0;
+	empty-cells: show;
+	font-size: 1em;
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid grey;
+}
+
+.ChildInputWidth {
+	width: 1200px;
+}
+
+td.RButtons {
+	width: 20px;
+}
+
+td.LButtons {
+	width: 20px;
+}
+
+.ChildRowHeader {
+	background: #bbb;
+	color: white;
+}
+
+.ColumnWidth33 {
+	width: 33px;
+}
+
+.table {
+	max-width: none;
+}
+
+	.table > caption + thead > tr:first-child > td, .table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > td, .table > thead:first-child > tr:first-child > th {
+		font-weight: 600;
+	}

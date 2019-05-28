@@ -1,0 +1,13 @@
+MsgControlMain
+
+Manual ordering
+Create a label and text box on the page
+Users must be in a dropdown of textbox
+	only show it when an admin is logged in
+	if it is empty, disable order button
+	if it contains text, then enable
+Run special function if an admin is present
+
+Special order
+After 4 o clokc each day, a sql stored proc is run to see if any baked good items exists
+if there is items, the items along with their quantity are changed to "Special items" which is half price then.

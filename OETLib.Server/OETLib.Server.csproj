@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A40E160D-F284-4490-ABED-91ACF2D82B01}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OETLib</RootNamespace>
+    <AssemblyName>OETLib</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csla">
+      <HintPath>..\Submodules\Singular.Server\Dlls\Csla.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessObjects\Base\BaseObjects.cs" />
+    <Compile Include="BusinessObjects\Model\Category.cs" />
+    <Compile Include="BusinessObjects\Model\CategoryList.cs" />
+    <Compile Include="BusinessObjects\Model\EditInventory.cs" />
+    <Compile Include="BusinessObjects\Model\EditInventoryList.cs" />
+    <Compile Include="BusinessObjects\Model\Inventory.cs" />
+    <Compile Include="BusinessObjects\Model\InventoryList.cs" />
+    <Compile Include="BusinessObjects\Model\myCart.cs" />
+    <Compile Include="BusinessObjects\Model\myCartList.cs" />
+    <Compile Include="BusinessObjects\Model\Order.cs" />
+    <Compile Include="BusinessObjects\Model\OrderDetail.cs" />
+    <Compile Include="BusinessObjects\Model\OrderDetailList.cs" />
+    <Compile Include="BusinessObjects\Model\OrderList.cs" />
+    <Compile Include="BusinessObjects\Model\ROCategory.cs" />
+    <Compile Include="BusinessObjects\Model\ROCategoryList.cs" />
+    <Compile Include="BusinessObjects\Model\Product.cs" />
+    <Compile Include="BusinessObjects\Model\ProductList.cs" />
+    <Compile Include="BusinessObjects\Model\ROProduct.cs" />
+    <Compile Include="BusinessObjects\Model\ROProductList.cs" />
+    <Compile Include="BusinessObjects\Model\ROUser.cs" />
+    <Compile Include="BusinessObjects\Model\UserList.cs" />
+    <Compile Include="BusinessObjects\Model\UserOrders.cs" />
+    <Compile Include="BusinessObjects\Model\UserOrdersList.cs" />
+    <Compile Include="BusinessObjects\Security\ROUserPaged.cs" />
+    <Compile Include="BusinessObjects\Security\ROUserPagedList.cs" />
+    <Compile Include="BusinessObjects\Security\User.cs" />
+    <Compile Include="BusinessObjects\Security\UserList.cs" />
+    <Compile Include="BusinessObjects\SystemSettings\Correspondence.cs" />
+    <Compile Include="CommonData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\OETIdentity.cs" />
+    <Compile Include="Security\OETWebSecurity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BusinessObjects\Maintenance\" />
+    <Folder Include="BusinessObjects\Products\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Submodules\Singular.Server\Singular.Server.461.vbproj">
+      <Project>{2cb7ebc8-a8a2-441c-a6b8-a76f64b2158d}</Project>
+      <Name>Singular.Server.461</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Submodules\Singular.Web\Singular.Web.461.vbproj">
+      <Project>{5f74ab00-b5e2-47a3-8dbe-f726cb3d03cd}</Project>
+      <Name>Singular.Web.461</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

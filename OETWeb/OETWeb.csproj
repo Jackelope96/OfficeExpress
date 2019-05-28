@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A178154F-D464-4FF0-A9F8-069F3CC34433}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OETWeb</RootNamespace>
+    <AssemblyName>OETWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csla">
+      <HintPath>..\..\Singular.Server\Dlls\Csla.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Documents.Excel.v12.2, Version=12.2.20122.2038, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\ChangePassword.aspx" />
+    <Content Include="Account\Home.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Helpers\OETHelpers.js" />
+    <Content Include="Images\IconBug.png" />
+    <Content Include="Images\JQuery\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Images\JQuery\ui-bg_flat_55_f2f2f2_40x100.png" />
+    <Content Include="Images\JQuery\ui-bg_glass_33_586d7e_1x400.png" />
+    <Content Include="Images\JQuery\ui-bg_glass_85_b8c8d6_1x400.png" />
+    <Content Include="Images\JQuery\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Images\JQuery\ui-bg_gloss-wave_55_283542_500x100.png" />
+    <Content Include="Images\JQuery\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Images\JQuery\ui-bg_inset-hard_100_ffffff_1x100.png" />
+    <Content Include="Images\JQuery\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Images\JQuery\ui-icons_304454_256x240.png" />
+    <Content Include="Images\JQuery\ui-icons_3a4f63_256x240.png" />
+    <Content Include="Images\JQuery\ui-icons_8b6137_256x240.png" />
+    <Content Include="Images\JQuery\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Images\JQuery\ui-icons_f4f5f5_256x240.png" />
+    <Content Include="Images\JQuery\ui-icons_ffffff_256x240.png" />
+    <Content Include="Images\LoadingSmall.gif" />
+    <Content Include="Images\officeexpressbackground.jpg" />
+    <Content Include="Images\OFFICEEXPRESSLOGO.fw.png" />
+    <Content Include="Images\TBFirst.png" />
+    <Content Include="Images\TBLast.png" />
+    <Content Include="Images\TBNext.png" />
+    <Content Include="Images\TBPrev.png" />
+    <Content Include="Images\TBRefresh.png" />
+    <Content Include="Images\TBSeperator.gif" />
+    <Content Include="Library\WebStats.aspx" />
+    <Content Include="Maintenance\Categories.aspx" />
+    <Content Include="Maintenance\Maintenance.aspx" />
+    <Content Include="Maintenance\Orders.aspx" />
+    <Content Include="Maintenance\Products.aspx" />
+    <Content Include="Maintenance\Reports.aspx" />
+    <Content Include="Maintenance\Security.aspx" />
+    <Content Include="Maintenance\SystemSettings.aspx" />
+    <Content Include="Maintenance\Users.aspx" />
+    <Content Include="Public\About.aspx" />
+    <Content Include="Public\Register.aspx" />
+    <Content Include="Public\Shop.aspx" />
+    <Content Include="Scripts\bootstrap\animate.js" />
+    <Content Include="Scripts\bootstrap\animate.min.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\Client.js" />
+    <None Include="Scripts\jquery-2.2.4-vsdoc.js" />
+    <None Include="Scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.4.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <None Include="Scripts\JSLINQ-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\JSLINQ.js" />
+    <Content Include="Scripts\menu.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\noty\jquery.noty.js" />
+    <Content Include="Scripts\noty\layouts\bottom.js" />
+    <Content Include="Scripts\noty\layouts\bottomCenter.js" />
+    <Content Include="Scripts\noty\layouts\bottomLeft.js" />
+    <Content Include="Scripts\noty\layouts\bottomRight.js" />
+    <Content Include="Scripts\noty\layouts\center.js" />
+    <Content Include="Scripts\noty\layouts\centerLeft.js" />
+    <Content Include="Scripts\noty\layouts\centerRight.js" />
+    <Content Include="Scripts\noty\layouts\inline.js" />
+    <Content Include="Scripts\noty\layouts\top.js" />
+    <Content Include="Scripts\noty\layouts\topCenter.js" />
+    <Content Include="Scripts\noty\layouts\topLeft.js" />
+    <Content Include="Scripts\noty\layouts\topRight.js" />
+    <Content Include="Scripts\noty\packaged\jquery.noty.packaged.js" />
+    <Content Include="Scripts\noty\packaged\jquery.noty.packaged.min.js" />
+    <Content Include="Scripts\noty\themes\bootstrap.js" />
+    <Content Include="Scripts\noty\themes\default.js" />
+    <Content Include="Scripts\noty\themes\relax.js" />
+    <Content Include="Scripts\table.js" />
+    <Content Include="Styles\bootstrap\bootstrap-theme.css" />
+    <Content Include="Styles\bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Styles\bootstrap\bootstrap.css" />
+    <Content Include="Styles\bootstrap\bootstrap.min.css" />
+    <Content Include="Styles\custom.css" />
+    <Content Include="Styles\Font-Awesome 4.2.0\css\font-awesome.css" />
+    <Content Include="Styles\Font-Awesome 4.2.0\css\font-awesome.min.css" />
+    <Content Include="Styles\Font-Awesome 4.2.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Styles\fonts\font-awesome.css" />
+    <Content Include="Styles\fonts\font-awesome.min.css" />
+    <Content Include="Styles\fonts\fontawesome-webfont.svg" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Styles\jquery-ui-1.8.19.custom.css" />
+    <Content Include="Styles\loggedout.css" />
+    <Content Include="Styles\maintenance.css" />
+    <Content Include="Styles\nav.css" />
+    <Content Include="Styles\noty\noty.css" />
+    <Content Include="Styles\Site-1.0.min.css" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Styles\table.css" />
+    <Content Include="Test.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePasswordVM.cs" />
+    <Compile Include="Account\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LoginStatus.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControls\CustomControls.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Library\DataHandler.ashx.cs">
+      <DependentUpon>DataHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Library\FileDownloader.ashx.cs">
+      <DependentUpon>FileDownloader.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Library\FileUpload.ashx.cs">
+      <DependentUpon>FileUpload.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Library\StatelessHandler.ashx.cs">
+      <DependentUpon>StatelessHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Library\WebStats.aspx.cs">
+      <DependentUpon>WebStats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Library\WebStats.aspx.designer.cs">
+      <DependentUpon>WebStats.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Library\OETEmptyViewModel.cs" />
+    <Compile Include="Library\OETPageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Library\OETViewModel.cs" />
+    <Compile Include="Maintenance\Categories.aspx.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\Categories.aspx.designer.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\Maintenance.aspx.cs">
+      <DependentUpon>Maintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\Maintenance.aspx.designer.cs">
+      <DependentUpon>Maintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\Orders.aspx.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\Orders.aspx.designer.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\Reports.aspx.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\Reports.aspx.designer.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\Security.aspx.cs">
+      <DependentUpon>Security.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\Security.aspx.designer.cs">
+      <DependentUpon>Security.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\SystemSettings.aspx.cs">
+      <DependentUpon>SystemSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\SystemSettings.aspx.designer.cs">
+      <DependentUpon>SystemSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\Users.aspx.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\Users.aspx.designer.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Public\About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Public\About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Public\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Public\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Public\RegisterVM.cs" />
+    <Compile Include="Public\Shop.aspx.cs">
+      <DependentUpon>Shop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Public\Shop.aspx.designer.cs">
+      <DependentUpon>Shop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SiteLoggedOut.Master.cs">
+      <DependentUpon>SiteLoggedOut.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteLoggedOut.Master.designer.cs">
+      <DependentUpon>SiteLoggedOut.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Library\DataHandler.ashx" />
+    <Content Include="Library\FileDownloader.ashx" />
+    <Content Include="Library\FileUpload.ashx" />
+    <Content Include="Library\StatelessHandler.ashx" />
+    <Content Include="Library\Web.config" />
+    <Content Include="Site.Master" />
+    <Content Include="Main.sitemap" />
+    <Content Include="Public\Web.config" />
+    <Content Include="Styles\bootstrap\bootstrap-theme.css.map" />
+    <Content Include="Styles\bootstrap\bootstrap-theme.min.css.map" />
+    <Content Include="Styles\bootstrap\bootstrap.css.map" />
+    <Content Include="Styles\bootstrap\bootstrap.min.css.map" />
+    <Content Include="Styles\fonts\AcerFoco_Lt.ttf" />
+    <Content Include="Styles\fonts\AcerFoco_SmBd - Copy.ttf" />
+    <Content Include="Styles\fonts\Foco-Bold.otf" />
+    <Content Include="Styles\fonts\Foco-Bold.ttf" />
+    <Content Include="Styles\fonts\Foco-Regular.otf" />
+    <Content Include="Styles\fonts\Foco-Regular.ttf" />
+    <Content Include="Styles\fonts\Foco_Bd.ttf" />
+    <Content Include="Styles\fonts\Foco_BdIt.ttf" />
+    <Content Include="Styles\fonts\Foco_Blk.ttf" />
+    <Content Include="Styles\fonts\Foco_BlkIt.ttf" />
+    <Content Include="Styles\fonts\Foco_It.ttf" />
+    <Content Include="Styles\fonts\Foco_Lt.eot" />
+    <Content Include="Styles\fonts\Foco_Lt.ttf" />
+    <Content Include="Styles\fonts\Foco_LtIt.ttf" />
+    <Content Include="Styles\fonts\Foco_Rg.ttf" />
+    <Content Include="Styles\fonts\fontawesome-webfont.eot" />
+    <Content Include="Styles\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Styles\fonts\fontawesome-webfont.woff" />
+    <Content Include="Styles\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Styles\fonts\FontAwesome.otf" />
+    <Content Include="Styles\fonts\fre3of9x.ttf" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Styles\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Styles\fonts\SourceSansPro-Black.ttf" />
+    <Content Include="Styles\fonts\SourceSansPro-BlackItalic.ttf" />
+    <Content Include="Styles\fonts\SourceSansPro-Bold.ttf" />
+    <Content Include="Styles\fonts\SourceSansPro-BoldItalic.ttf" />
+    <Content Include="Styles\fonts\SourceSansPro-ExtraLight.ttf" />
+    <Content Include="Styles\fonts\SourceSansPro-ExtraLightItalic.ttf" />
+    <Content Include="Styles\fonts\SourceSansPro-Italic.ttf" />
+    <Content Include="Styles\fonts\SourceSansPro-Light.ttf" />
+    <Content Include="Styles\fonts\SourceSansPro-LightItalic.ttf" />
+    <Content Include="Styles\fonts\SourceSansPro-Regular.ttf" />
+    <Content Include="Styles\fonts\SourceSansPro-Semibold.ttf" />
+    <Content Include="Styles\fonts\SourceSansPro-SemiboldItalic.ttf" />
+    <Content Include="Styles\fonts\TradeGothicLTStd-BdCn20.otf" />
+    <Content Include="Styles\Font-Awesome 4.2.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Styles\Font-Awesome 4.2.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Styles\Font-Awesome 4.2.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Styles\Font-Awesome 4.2.0\fonts\FontAwesome.otf" />
+    <Content Include="Scripts\jquery-2.2.4.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="SiteLoggedOut.Master" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OETLib.Server\OETLib.Server.csproj">
+      <Project>{a40e160d-f284-4490-abed-91acf2d82b01}</Project>
+      <Name>OETLib.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Submodules\Singular.Server\Singular.Server.461.vbproj">
+      <Project>{2cb7ebc8-a8a2-441c-a6b8-a76f64b2158d}</Project>
+      <Name>Singular.Server.461</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Submodules\Singular.Web\Singular.Web.461.vbproj">
+      <Project>{5f74ab00-b5e2-47a3-8dbe-f726cb3d03cd}</Project>
+      <Name>Singular.Web.461</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\Singular\" />
+    <Folder Include="View models\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53357</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/OETWeb</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

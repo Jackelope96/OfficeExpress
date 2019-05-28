@@ -1,0 +1,843 @@
+﻿body {
+}
+
+.page-container {
+	padding: 0px;
+}
+
+#LoadingOverlay {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	z-index: 5;
+	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255, 0.9);
+	transition: 0.5s;
+}
+
+.ContainerWidthPadding {
+	width: 100%;
+	padding-left: 205px;
+	padding-right: 5px;
+}
+
+.ContainerLoggedOut {
+	padding-right: 10px;
+	padding-left: 20px;
+	background: white;
+	padding-top: 10px;
+	height: auto;
+	margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+	.page-container {
+		margin: 5px auto 0px auto;
+		padding: 0px 10px;
+	}
+}
+
+
+.container {
+	padding-right: 10px;
+	padding-left: 20px;
+	background: white;
+	padding-top: 10px;
+	min-height: 610px;
+	height: auto;
+	margin-top: 10px;
+	width: auto;
+}
+
+.CompanyDetailContainer {
+	border: 1px solid lightgrey;
+	padding-bottom: 10px;
+	background-color: #fff;
+	width: calc(100% + 22.5px);
+	margin-left: -15px;
+	margin-right: -15px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+
+.ContainerBackGroundStyle12 {
+	background-color: white;
+	padding: 5px;
+	height: 88vh;
+	overflow: auto;
+	box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+	border-radius: 4px;
+}
+
+.ContainerBackGroundStyle10 {
+	padding: 5px;
+	background-color: #f6f6f6;
+}
+
+.container_FullBg {
+	padding: 0;
+	background-color: #f6f6f6;
+}
+
+.page {
+	background-color: #fafafa;
+	z-index: 1;
+	border: 0px solid #D3D9D9;
+	border-top: none;
+}
+
+/*header Styles..*/
+
+.LoginHeight {
+	min-height: 680px;
+	height: auto;
+	max-height: 100%;
+}
+
+.header {
+	color: #fff;
+	background: #7ebad3;
+	border-bottom: #fff 2px solid;
+	height: 75px;
+	padding: 0px;
+}
+
+	.header .title {
+		font-weight: 600;
+		padding: 10px 20px;
+		font-size: 26px;
+	}
+
+.IconMarginLogin {
+	margin-right: -20px;
+}
+
+.context-menu-ls {
+	position: absolute;
+	margin-top: 30px;
+	z-index: 111;
+	display: none;
+	color: #000;
+	margin-right: -30px;
+	width: 150px;
+	border-radius: 0px;
+	background: white;
+	right: 5px;
+}
+
+.header .title {
+	font-weight: 600;
+	padding: 10px 20px;
+	font-size: 26px;
+}
+
+.IconMarginLogin {
+	margin-right: -20px;
+}
+
+.context-menu-ls {
+	position: absolute;
+	margin-top: 30px;
+	z-index: 111;
+	display: none;
+	color: #000;
+	margin-right: -30px;
+	width: 150px;
+	border-radius: 0px;
+	background: white;
+	right: 5px;
+}
+
+/* #region Login Popup Menu */
+.login-status {
+	font-size: 14px;
+	font-weight: 300;
+	margin: 20px 26px;
+}
+
+.context-menu-ls {
+	position: fixed;
+	margin-top: 82px;
+	z-index: 2000;
+	display: none;
+	color: #272727;
+}
+
+	.context-menu-ls .CM-Main {
+		background-color: #FFF;
+		border-radius: 0px;
+		margin-right: -40px;
+		text-align: left;
+		width: 180px;
+		margin-top: -50px;
+	}
+
+	.context-menu-ls .CM-Header {
+		padding: 7px 15px 13px 15px;
+	}
+
+		.context-menu-ls .CM-Header div:first-child {
+			font-weight: 600;
+			font-size: 1.1em;
+			margin-bottom: 5px;
+		}
+
+	.context-menu-ls .Selectable {
+		background-color: #F7F7F7;
+		padding-bottom: 2px;
+		border-radius: 5px;
+	}
+
+		.context-menu-ls .Selectable div:hover {
+			background-color: #385678;
+			color: #FFF;
+			cursor: pointer;
+		}
+
+		.context-menu-ls .Selectable div {
+		}
+
+			.context-menu-ls .Selectable div a {
+				text-decoration: none;
+				color: #7a7a7a;
+				padding: 10px 15px;
+				display: block;
+				border-top: 1px solid #f6f6f6;
+				background: #fff;
+				margin-top: -2px;
+				margin-right: -20px;
+			}
+
+				.context-menu-ls .Selectable div a:hover {
+					text-decoration: none;
+					color: #fff;
+					background-color: #7ebad3;
+					padding: 10px 15px;
+					display: block;
+				}
+
+/* #endregion */
+
+.login-status {
+	font-size: 14px;
+	font-weight: 500;
+	margin: -5px 10px;
+	text-decoration: none;
+	text-transform: capitalize;
+}
+
+.content-holder {
+	min-height: 420px;
+	margin: 20px;
+}
+
+.footer {
+	color: #4e5766;
+	padding: 8px 0px 0px 0px;
+	margin: 0px auto;
+	text-align: center;
+	line-height: normal;
+	background: #fff;
+}
+
+.LogoImg {
+	margin-left: 20px;
+	margin-top: 5px;
+	height: 60px;
+}
+
+/*********buttons start********/
+.custom_BbtnMd {
+	background-color: #7ebad3;
+	color: #fff;
+	border: solid 1px #7ebad3;
+	text-transform: uppercase;
+	position: relative;
+	max-width: 100%;
+	font-size: 13px;
+	font-weight: 500;
+	min-width: 150px;
+	vertical-align: top;
+	width: auto;
+	/*margin-right:5px;*/
+}
+
+	.custom_BbtnMd:hover {
+		background-color: #fff;
+		border-color: #7ebad3;
+		text-decoration: none;
+		color: #7ebad3;
+		cursor: pointer;
+	}
+
+	.custom_BbtnMd:focus.selected {
+		background-color: #7ebad3;
+		color: #fff;
+		border: solid 1px #7ebad3;
+	}
+
+
+
+
+.custom_ObtnMD {
+	background-color: #004F88;
+	border-color: #004F88;
+	text-decoration: none;
+	color: #fff;
+	cursor: pointer;
+	text-transform: uppercase;
+	position: relative;
+	max-width: 100%;
+	font-size: 13px;
+	font-weight: 500;
+	min-width: 150px;
+	vertical-align: top;
+	/*margin-left:5px;*/
+	margin-right: 5px;
+	height: 33px;
+}
+
+	.custom_ObtnMD:hover {
+		background-color: #fff;
+		color: #004F88;
+		border: solid 1px #004F88;
+		height: 33px;
+	}
+
+		.custom_ObtnMD:hover a:focus a:hover {
+			background-color: #004F88;
+			color: #fff;
+			border: solid 1px #004F88;
+		}
+
+	.custom_ObtnMD:focus:active.selected.focus {
+		background-color: #004F88;
+		border-color: #004F88;
+		text-decoration: none;
+		color: #fff;
+	}
+
+	.custom_ObtnMD.focus, .custom_ObtnMD:focus {
+		color: white;
+		Background: #004F88;
+	}
+
+.btn.custom_ObtnMD:hover {
+	background-color: #fff;
+	color: #004F88;
+	border: solid 1px #004F88;
+}
+
+
+.custom_TEbtn {
+	text-transform: uppercase;
+	background-color: #7a7a7a;
+	text-decoration: none;
+	color: #fff;
+}
+
+	.custom_TEbtn:hover {
+		background-color: transparent;
+		color: #7a7a7a;
+		border: solid 1px #7a7a7a;
+	}
+
+.custom_Tbtn {
+	background-color: #004F88;
+	color: #fff;
+	border: solid 1px #004F88;
+	text-transform: uppercase;
+}
+
+	.custom_Tbtn:hover {
+		background-color: transparent;
+		border: solid 1px #004F88;
+		text-decoration: none;
+		color: #004F88;
+	}
+
+a.custom_Tbtn.custom_Input.custom_Sbtn {
+	background-color: #004F88;
+	color: #fff;
+	border: solid 1px #004F88;
+	text-transform: uppercase;
+}
+
+	a.custom_Tbtn.custom_Input.custom_Sbtn:hover {
+		background-color: transparent;
+		border: solid 1px #004F88;
+		text-decoration: none;
+		color: #004F88;
+	}
+
+.custom_Sbtn {
+	width: initial;
+	min-width: 273.33px;
+}
+
+.SmllBtn {
+	width: 100px;
+	height: 36px;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.SmallDeleteButton {
+	min-width: 50px;
+	/* height: 50px; */
+	color: #fff;
+	background: #8C0000;
+	border: 1px solid #8C0000;
+}
+
+	.SmallDeleteButton:hover {
+		min-width: 50px;
+		/* height: 50px; */
+		color: #8C0000;
+		background: #fff;
+		border: 1px solid #8C0000;
+	}
+
+.custom_Dbtn {
+	background-color: transparent;
+	color: #2D3957;
+	border: solid 1px #2A3F54;
+	text-align: center;
+}
+
+	.custom_Dbtn:hover, .check_enable.active {
+		background-color: #2A3F54;
+		color: white;
+		border: solid 1px #2A3F54;
+		text-align: center;
+	}
+
+	.custom_Dbtn.dropdown-toggle:hover {
+		background-color: #fff;
+		color: #2D3957;
+	}
+
+.ApproveButton {
+	color: #fff;
+	background: #008C69;
+	width: 130px;
+	text-transform: uppercase;
+	border: 1px solid #008C69;
+	margin-right: 5px;
+}
+
+.ApproveButtonPlatformSpread {
+	color: #fff;
+	background: #008C69;
+	width: auto;
+	text-transform: uppercase;
+	border: 1px solid #008C69;
+	margin-right: 5px;
+	font-size: 13px;
+	float: right;
+}
+
+.ApproveButton:hover {
+	color: #008C69;
+	background: #fff;
+	width: 150px;
+	text-transform: uppercase;
+	border: 1px solid #008C69;
+}
+
+.ApproveButton:focus:active.selected.focus {
+	color: #fff;
+	background: #008C69;
+	width: 150px;
+	text-transform: uppercase;
+	border: 1px solid #008C69;
+}
+
+.btn.ApproveButton {
+	color: #fff;
+	background: #008C69;
+	width: 150px;
+	text-transform: uppercase;
+	border: 1px solid #008C69;
+}
+
+	.btn.ApproveButton:hover {
+		color: #008C69;
+		background: #fff;
+		width: 150px;
+		text-transform: uppercase;
+		border: 1px solid #008C69;
+	}
+
+.btn-primary {
+	color: #fff;
+	background-color: #2A3D58;
+	border-color: #2A3D58;
+	min-width: 150px;
+	text-transform: uppercase;
+	font-size: 13px;
+	height: 30px;
+}
+
+.btn-danger {
+	color: #fff;
+	color: #fff;
+	background-color: #e60063;
+	border-color: #d43f3a;
+	min-width: 150px;
+	width: auto;
+	text-transform: uppercase;
+	font-size: 13px;
+}
+
+	.btn-danger:hover {
+		color: #e60063;
+		background-color: #fff;
+		border: 1px solid #e60063;
+	}
+
+.btn.btn-danger {
+	color: #fff;
+	color: #fff;
+	background-color: #004F88;
+	border-color: #004F88;
+	min-width: 150px;
+	width: auto;
+	text-transform: uppercase;
+	font-size: 13px;
+	height: 30px;
+}
+
+	.btn.btn-danger:hover {
+		color: #8C0000;
+		background-color: #fff;
+		border: 1px solid #8C0000;
+	}
+
+.DownloadButton {
+	color: #fff;
+	background-color: #004F88;
+	border-color: #004F88;
+	width: auto;
+	text-transform: uppercase;
+	min-width: 150px;
+	font-size: 13px;
+	width: auto;
+	margin-right: 5px;
+	width: 225px;
+}
+
+	.DownloadButton:hover {
+		color: #004F88;
+		background-color: #fff;
+		border-color: #004F88;
+		width: auto;
+		text-transform: uppercase;
+		min-width: 150px;
+		font-size: 13px;
+		width: auto;
+		margin-right: 5px;
+		width: 225px;
+	}
+
+DownloadButton:focus:active.selected.focus {
+	color: #004F88;
+	background-color: #fff;
+	border-color: #004F88;
+	width: auto;
+	text-transform: uppercase;
+	min-width: 150px;
+	font-size: 13px;
+	width: auto;
+	margin-right: 5px;
+	width: 225px;
+}
+
+
+button.DownloadButton {
+	color: #fff;
+	background-color: #004F88;
+	border-color: #004F88;
+	width: auto;
+	text-transform: uppercase;
+	min-width: 150px;
+	font-size: 13px;
+	height: 35px;
+	width: auto;
+	width: 225px;
+}
+
+	button.DownloadButton:hover {
+		color: #004F88;
+		background-color: #fff;
+		border-color: #004F88;
+		width: auto;
+		text-transform: uppercase;
+		min-width: 165px;
+		font-size: 13px;
+		height: 35px;
+		min-width: 230px;
+	}
+
+.DownloadButton:focus:active.selected.focus {
+	color: #fff;
+	background-color: #004F88;
+	border-color: #004F88;
+	width: auto;
+	text-transform: uppercase;
+	min-width: 150px;
+	font-size: 13px;
+	width: 225px;
+}
+
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	height: 33px;
+	font-size: 13px;
+	min-width: 140px;
+	margin-left: -17px;
+	margin-top: 13px;
+}
+
+.btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+	border-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	height: 33px;
+	font-size: 13px;
+	min-width: 130px;
+	margin-top: 13px;
+}
+
+button.close {
+	-webkit-appearance: none;
+	padding: 10px;
+	cursor: pointer;
+	background: 0 0;
+	border: 0;
+}
+
+button.close {
+	z-index: 9999;
+	position: absolute;
+	right: 0px;
+}
+
+.custom_BbtnMd:focus {
+	background: transparent;
+	color: #7ebad3;
+	border: solid 1px #7ebad3;
+}
+
+btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
+	margin-left: 15px;
+}
+
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+	border-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	height: 33px;
+	font-size: 13px;
+	min-width: 130px;
+	margin-top: 13px;
+	margin-bottom: 13px;
+}
+
+.btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
+	margin-left: 15px;
+}
+
+button.btn-primary.fa.fa-edit.btn {
+	color: #2A3F54;
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.PlusButton {
+	color: #555;
+	background-color: #fff;
+	border: #555 1px solid;
+	padding: 1px 5px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
+	width: 24px;
+}
+
+	.PlusButton:hover {
+		color: #fff;
+		background-color: #555;
+		border: #555 1px solid;
+		padding: 1px 5px;
+		font-size: 12px;
+		line-height: 1.5;
+		border-radius: 3px;
+		width: 24px;
+	}
+
+	.PlusButton:focus, .PlusButton.focus {
+		color: #555;
+		background-color: #fff;
+		border: #555 1px solid;
+	}
+
+	.PlusButton.selected {
+		color: #555;
+		background-color: #fff;
+		border: #555 1px solid;
+	}
+
+.blueSquareButton {
+	color: #fff;
+	background-color: #2A3D58;
+	border: solid 1px #2A3D58;
+	padding: 8px 6px 8px 12px;
+	font-size: 12px;
+	border-radius: 3px;
+}
+
+	.blueSquareButton:hover {
+		color: #2A3D58;
+		background-color: #fff;
+		border: #2A3D58 1px solid;
+		padding: 8px 6px 8px 12px;
+		font-size: 12px;
+		border-radius: 3px;
+	}
+
+	.blueSquareButton:focus, .blueSquareButton.focus {
+		color: #fff;
+		background-color: #2A3D58;
+		border: #2A3D58 1px solid;
+	}
+
+	.blueSquareButton.selected {
+		color: #fff;
+		background-color: #2A3D58;
+		border: #2A3D58 1px solid;
+	}
+
+.PreviousAndNextButtons {
+	color: #fff;
+	background-color: #7a7a7a;
+	border: #7a7a7a 1px solid;
+	font-size: 13px;
+	height: 33px;
+	border-radius: 3px;
+	width: 130px;
+	text-transform: uppercase;
+	margin-bottom: 5px;
+}
+
+	.PreviousAndNextButtons:hover {
+		color: #7a7a7a;
+		background-color: #fff;
+		border: #7a7a7a 1px solid;
+		font-size: 13px;
+		height: 33px;
+		border-radius: 3px;
+		width: 130px;
+		text-transform: uppercase;
+		margin-bottom: 5px;
+	}
+
+	.PreviousAndNextButtons:focus:active {
+		color: #7a7a7a;
+		background-color: #fff;
+		border: #7a7a7a 1px solid;
+	}
+
+.LoginButton {
+	width: 200px;
+	margin-left: 45px;
+	background-color: #239600;
+	color: #fff;
+	border: solid 1px #239600;
+	text-transform: uppercase;
+	position: relative;
+	max-width: 100%;
+	font-size: 13px;
+	font-weight: 500;
+	margin-top: 15px;
+}
+
+.btn-group-sm > .btn, .btn-sm {
+	padding: 5px 10px;
+	font-size: 13px;
+	line-height: 1.5;
+	border-radius: 3px;
+	min-width: 150px;
+	color: #fff;
+	float: left;
+	text-transform: uppercase;
+	width: auto;
+	margin-right: 5px;
+}
+
+	.btn-group-sm > .btn, .btn-sm:hover {
+		min-width: 150px;
+		width: auto;
+		color: #7ebad3;
+		background: #fff;
+		border: 1px solid #7ebad3;
+	}
+
+	.btn-group-sm > .btn, .btn-sm:focus {
+		color: #7ebad3;
+		background: #fff;
+		border: 1px solid #7ebad3;
+		min-width: 150px;
+		width: auto;
+	}
+
+.btn-success {
+	background-color: #7ebad3;
+	border: 1px solid #7ebad3;
+	color: #fff;
+	margin-right: 5px;
+	min-width: 150px;
+}
+
+	.btn-success:hover {
+		background-color: #fff;
+		border: 1px solid #7ebad3;
+		color: #7ebad3;
+		margin-right: 5px;
+	}
+
+.Grid .RButtons .btn {
+	padding: 0px;
+	font-size: 14px;
+	margin: 0px 0 !important;
+}
+
+.Grid .RButtons .btn {
+	padding: 0px;
+	font-size: 14px;
+	margin: 0px 0 !important;
+	color: #fff;
+	background: #7ebad3;
+	border: 1px solid #7ebad3;
+	margin-bottom: 15px !important;
+	height: 30px;
+}
+
+	.Grid .RButtons .btn:hover {
+		padding: 0px;
+		font-size: 14px;
+		margin: 0px 0 !important;
+		color: #7ebad3;
+		background: #fff;
+		border: 1px solid #7ebad3;
+		margin-bottom: 15px !important;
+	}
+
+/*********************buttons end*****************************/
+/*********************Padding*****************************/
+.PaddingleftRightNone {
+	padding-left: 0px;
+	padding-right: 0px;
+}

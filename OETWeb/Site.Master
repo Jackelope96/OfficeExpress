@@ -1,0 +1,108 @@
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+<%@ Master Language="C#" AutoEventWireup="false" CodeBehind="Site.master.cs" Inherits="OETWeb.Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+	<title></title>
+
+	<link href="~/Styles/jquery-ui-1.8.19.custom.css" rel="stylesheet" type="text/css" />
+	<%= Singular.Web.CSSFile.RenderLibraryStyles() %>
+	<%= Singular.Web.CSSFile.RenderStyleTag("~/Styles/Site.css")%>
+	<%= Singular.Web.CSSFile.IncludeFontAwesome() %>
+	<%= Singular.Web.Scripts.Scripts.RenderLibraryScripts() %>
+
+	<!-- CSS -->
+	<link href="Styles/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<style type="text/css" media="screen, print"></style>
+	<link href="Styles/nav.css" rel="stylesheet" />
+	<link href="Styles/Site.css" rel="stylesheet" />
+	<link href="Styles/fonts/font-awesome.css" rel="stylesheet" />
+	<link href="Styles/fonts/font-awesome.min.css" rel="stylesheet" />
+	<link href="Styles/table.css" rel="stylesheet" />
+	<link href="Styles/noty/noty.css" rel="stylesheet" />
+	<link href="Styles/custom.css" rel="stylesheet" />
+
+	<!-- Javascript -->
+	<script src="../Scripts/bootstrap/animate.js"></script>
+	<script src="../Scripts/menu.js"></script>
+	<script src="../Scripts/bootstrap/bootstrap.min.js"></script>
+	<script src="../Scripts/JSLINQ.js"></script>
+	<script src="../Scripts/moment.js"></script>
+	<script type="text/javascript" src="../Scripts/noty/packaged/jquery.noty.packaged.js"></script>
+	<script type="text/javascript" src="../Scripts/noty/layouts/topRight.js"></script>
+	<script type="text/javascript" src="../Scripts/noty/layouts/bottom.js"></script>
+	<script type="text/javascript" src="../Scripts/noty/layouts/bottomCenter.js"></script>
+	<script type="text/javascript" src="../Scripts/noty/layouts/bottomLeft.js"></script>
+	<script type="text/javascript" src="../Scripts/noty/layouts/bottomRight.js"></script>
+	<script type="text/javascript" src="../Scripts/noty/layouts/center.js"></script>
+	<script type="text/javascript" src="../Scripts/noty/layouts/centerLeft.js"></script>
+	<script type="text/javascript" src="../Scripts/noty/layouts/centerRight.js"></script>
+	<script type="text/javascript" src="../Scripts/noty/layouts/inline.js"></script>
+	<script type="text/javascript" src="../Scripts/noty/layouts/top.js"></script>
+	<script type="text/javascript" src="../Scripts/noty/layouts/topCenter.js"></script>
+	<script type="text/javascript" src="../Scripts/noty/layouts/topLeft.js"></script>
+
+	<asp:ContentPlaceHolder ID="HeadContent" runat="server">
+	</asp:ContentPlaceHolder>
+</head>
+<body>
+	<form id="Form2" runat="server">
+
+		<div class="col-md-12 col-sm-12 col-xs-12 PaddingleftRightNone" id="LoadingOverlay" data-bind="visible: true">
+
+			<div class="page">
+
+				<div class="header col-md-12 col-sm-12 PaddingleftRightNone" data-bind="visible: true">
+
+					<img src="/OETWeb/Images/OFFICEEXPRESSLOGO.fw.png" class="LogoImg" />
+
+					<%-- Logged In Status --%>
+					<div class="login-display">
+						<%= new OETWeb.CustomControls.LoginStatus() %>
+					</div>
+
+					<%-- Main Menu --%>
+					<%-- <div class="MenuContainer UIContainer">
+            <singular:SiteMapDataSource ID="SiteMapMain" runat="server" SiteMapProvider="SiteMapMain" />
+            <asp:Menu ID="NavigationMenu" runat="server" DataSourceID="SiteMapMain" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal" SkipLinkText=""></asp:Menu>
+          </div>--%>
+				</div>
+
+				<%-- Page Content Placeholder --%>
+				<%--  <div class="content-holder UIContainer">
+          <asp:ScriptManager ID="SCMMain" runat="server" AjaxFrameworkMode="Disabled" />
+          <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+
+          <singular:PageModelRenderer ID="pmrMain" runat="server" />
+        </div>--%>
+				<div class="container_FullBg col-md-12 col-sm-12 col-xs-12 PaddingleftRightNone">
+					<div class="col-md-2 col-sm-3 col-xs-3  PaddingLeftRight0" id="sidebarWidth">
+						<CustomControls:MainMenu ID="ManagementMenu" runat="server" SiteMapDatasourceID="SiteMapMain" CssClass="menu" EnableViewState="false" Orientation="Vertical" SkipLinkText="" />
+						<singular:SiteMapDataSource ID="SiteMapMain" runat="server" SiteMapProvider="SiteMapMain" />
+					</div>
+
+					<div class="col-md-10 col-sm-9 col-xs-9  ContainerBackGroundStyle10 ">
+						<div class="col-md-12 col-sm-12 col-xs-12 ContainerBackGroundStyle12">
+							<%--<div style="display: none" data-bind="visible: true">
+
+
+
+								
+							</div>--%>
+							<asp:ScriptManager ID="OETMain" runat="server" AjaxFrameworkMode="Disabled" />
+							<asp:ContentPlaceHolder ID="MainContent" runat="server" />
+							<singular:PageModelRenderer ID="pmrMain" runat="server" />
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer">
+			</div>
+		</div>
+	</form>
+</body>
+</html>

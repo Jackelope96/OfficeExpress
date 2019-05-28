@@ -1,0 +1,448 @@
+﻿body {
+}
+
+.DivToolbar {
+	position: relative;
+	padding: 0px;
+	margin: 0px;
+	background: transparent;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+	background-color: transparent !important;
+	background-image: none;
+	color: #7ebad3 !important;
+}
+
+.BackgroundContainer {
+    padding: 0;
+    background-color: #f6f6f6;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(../Images/officeexpressbackground.jpg);
+    height: 100vh;
+}
+.ContainerBackGroundStyle12 {
+    background-color: white;
+    padding: 5px;
+     height: 60vh; 
+    overflow: auto;
+		vertical-align:middle;
+		margin-top:100px;
+    border-radius: 4px;
+		  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+		
+}
+.ContainerBackGroundStyle10 {
+    padding: 5px;
+    background-color: transparent;
+}
+
+
+legend {
+    display: block;
+    color: #7ebad3;
+    text-align: center;
+}
+
+fieldset legend {
+	font-weight: 500;
+}
+
+.LoginMargin.fa.fa-user {
+	margin-right: 10px;
+	margin-top: 4px;
+}
+
+i.fa.fa-caret-down {
+	float: right;
+	margin-right: 12px;
+	margin-top: 5px;
+}
+
+	i.fa.fa-caret-down:first-child {
+		margin-bottom: -20px;
+	}
+
+
+select, input[type='text'], input[type='password'], input[type='checkbox'], input[type='file'], textarea {
+	box-shadow: none;
+	border: 1px solid #7ebad3;
+	padding: 8px;
+	background-color: transparent;
+	font: inherit;
+	line-height: 1em;
+	margin-top: 3px;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+
+input, input[type='text'] {
+	height: inherit;
+}
+
+.LoginButton {
+	width: 300px;
+	margin-left: 0px;
+	background-color: #555;
+	color: #fff;
+	border: solid 1px #555;
+	font-size: 13px;
+}
+
+.LoginButton {
+	left: 0px;
+}
+
+.DivToolbar h1, .DivToolbar h2 {
+	margin-top: 0px;
+	font-weight: normal;
+	text-transform: none;
+}
+
+h1, h2, h3, h4, h5 {
+	font-variant: normal;
+	text-transform: none;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	line-height: 1em;
+	font-weight: 500;
+}
+
+div.row span.label, div.row label, div.row span.display {
+	padding-left: 0px;
+}
+
+#product em {
+	padding-right: 40px;
+}
+
+.LoggedOutButton {
+	font-weight: 600;
+}
+
+	.LoggedOutButton:hover {
+		font-weight: 600;
+	}
+
+a.LoggedOutButton {
+	font-weight: 600;
+	padding: 5px;
+	margin-bottom: 9px;
+	margin-left: -20px;
+}
+
+	a.LoggedOutButton:hover {
+		font-weight: 600;
+		padding: 5px;
+		margin-bottom: 9px;
+		margin-left: -20px;
+	}
+
+.LoggedOutButtonDropDown {
+	background: #fff;
+	color: #2A3D58;
+	text-transform: capitalize;
+	font-size: 14px;
+	padding-top: 5px;
+	display: none;
+	width: auto;
+	text-align: center;
+	border: 1px solid #2A3D58;
+	margin-top: -10px;
+	height: 35px;
+	vertical-align: middle;
+}
+
+	.LoggedOutButtonDropDown:hover {
+		background: #fafafa;
+		color: #2A3D58;
+		border: 1px solid #2A3D58;
+	}
+
+.btn.active, .btn:active {
+	background-image: none;
+	outline: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+	.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+		outline: none;
+		outline-offset: none;
+	}
+
+.fa-caret-down::before {
+	content: "";
+	margin-left: 0px;
+}
+
+.MarginSpacing {
+	margin-bottom: 10px;
+}
+
+.MarginLeftNeg8 {
+	margin-left: 15%;
+}
+
+.MarginLeft15 {
+	margin-left: 25px;
+}
+
+input[type='checkbox']:before, input[type='radio']:before {
+	content: ' ';
+	position: absolute;
+	top: 0px;
+	left: -15px;
+}
+
+input[type='checkbox']:checked:after, input[type='radio']:checked:after, input.checked:after {
+	content: "\f00c";
+	z-index: 9;
+	position: absolute;
+	font-family: 'FontAwesome';
+	color: #2A3D58;
+	margin-top: 2px;
+	line-height: 16px;
+	text-align: center;
+	margin-left: -12px;
+}
+
+#UserName_d388a0b1-66d0-4476-b286-1fcf001688d8 {
+	margin-left: 12px;
+}
+
+#Form2 > div.page-container > div > div.col-md-12.PaddingTop60 > div > fieldset > div:nth-child(2) > label {
+	margin-left: 12px;
+}
+
+#Form2 > div.page-container > div > div.col-md-12.PaddingTop60 > div > fieldset > div:nth-child(2) > input[type="text"] {
+	margin-left: 12px;
+}
+
+.ForgottPasswordWidth {
+	width: 25%;
+}
+
+.login_block {
+	margin: 0 auto;
+	background: white;
+	border-radius: 4px;
+	margin-top: 50px;
+	float: left;
+	padding-bottom: 15px;
+}
+
+body .ContainerLoggedOut {
+	min-width: 10px;
+}
+
+.LogInButtons {
+	width: 153px;
+	margin-left: -3px;
+	margin-right: 3px;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	.MarginRight4 {
+		margin-right: 4px;
+	}
+
+	#LoadingOverlay > div.page > div.LoginContainer.col-md-12.col-sm-12.col-xs-12 > div > div > div:nth-child(3) > button.LogInButtons.btn.custom_ObtnMD > span.fa.fa-question {
+		margin-right: 4px;
+	}
+
+	#LoadingOverlay > div > div.header > div:nth-child(2) > div.btn-group.btn.LoggedOutButton.PaddingLeft15 > span > span {
+		padding-top: 15px !important;
+	}
+}
+
+#LoadingOverlay > div > div.col-md-12.PaddingTop60 > div > div > div:nth-child(4) > div > div.MarginTop20 > button.DownloadButton.btn {
+	width: 150px;
+}
+
+#LoadingOverlay > div > div.col-md-12.PaddingTop60 > div > div > div:nth-child(4) > div > div.MarginTop20 > button.custom_BbtnMd.btn {
+	width: 145px;
+}
+
+.btn .fa {
+	margin-right: 0px;
+	float: left;
+	padding-top: 0px;
+	margin-left: 0px;
+	margin-top: 2px;
+}
+
+@media screen and (min-width:1024px) and (max-width:1255px) {
+	div.row span.label, div.row label, div.row span.display {
+		display: table;
+		margin-left: 0px;
+	}
+}
+
+.LoginContainer {
+	padding: 0;
+	background-color: #fff;
+	height: 81.5vh;
+	padding-top: 10px;
+	background-image: url(../Images/LoginBackgroundImage.jpg);
+	border-bottom: 3px solid #e60063;
+	margin-bottom: 5px;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+}
+
+.MarginRight1 {
+	margin-right: 1px;
+}
+
+.LoggedInFooterImg {
+	width: 180px;
+	float: right;
+	padding-right: 50px;
+}
+/* IE Only*/ /* IE10+ CSS styles go here */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	.btn .fa.fa-question {
+		margin-right: 0px;
+		float: left;
+		padding-top: 0px;
+		margin-left: -5px;
+		margin-top: 0 !important;
+	}
+
+	.btn .fa.fa-lock {
+		margin-right: 0px;
+		float: left;
+		padding-top: 0px;
+		margin-left: -5px;
+		margin-top: 0 !important;
+	}
+}
+
+.header {
+	color: #fff;
+	background: #7ebad3;
+	border-bottom: none !important;
+	height: 75px;
+	padding: 0px;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #7ebad3;
+	border-color: #7ebad3;
+	min-width: 150px;
+	text-transform: uppercase;
+	font-size: 13px;
+}
+
+	.btn-primary:hover {
+		color: #7ebad3;
+		background-color: #fff;
+		border-color: #7ebad3;
+		min-width: 150px;
+		text-transform: uppercase;
+		font-size: 13px;
+	}
+
+.LoginSideContainer {
+	float: left;
+	margin-top: 50px;
+}
+
+.LoginHeaddingStyle {
+	color: white;
+	font-weight: 100;
+	font-size: 38px;
+}
+
+.FontWeight {
+	font-weight: bolder;
+}
+
+.SmallText {
+	color: white;
+}
+
+.MarginLeft15 {
+	margin-left: 15%;
+}
+
+.Margin25 {
+	margin-left: 18%;
+}
+
+legend {
+	padding-top: 20px;
+}
+
+
+
+hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 0;
+	border-bottom: 3px solid #e60063;
+}
+
+.Padding20 {
+	padding-left: 20px;
+}
+
+.LogInBox {
+	background: white;
+	padding: 10px;
+	border-radius: 4px;
+	margin-top: 60px;
+}
+
+.TextCenter {
+	text-align: center;
+}
+
+label {
+	display: block;
+	max-width: 100%;
+	margin-bottom: 0px;
+	font-weight: 300;
+	color:#7ebad3;
+	font-weight: 500;
+}
+
+.WidthInput {
+	width: 70%;
+}
+
+#UserName_9989e745-19e9-4ca6-907b-efe789ce5efa {
+	width: 70%;
+}
+
+input, input[type='text'], input[type=password] {
+	height: inherit;
+	line-height: 1.5em;
+}
+
+	input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+		background-color: white !important;
+		background-image: none;
+		color: rgb(0, 0, 0);
+		height: inherit;
+		line-height: 1.5em;
+	}
+
+.Margin6 {
+	margin-left: 6px;
+}
+.MarginRight5{
+	    margin-left: 50px;
+}
+.LoginImgSize{
+	    height: 50px;
+    background: #7ebad3;
+    padding: 5px;
+    /* width: 100%; */
+    /* text-align: center; */
+}

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+	<siteMapNode url="" title=""  description="">
+
+		<siteMapNode url="~/Account/Home.aspx" title="Home"  glyphicon="main-icon fa fa-home"  />
+
+		<siteMapNode title="Maintenance" roles="Maintenance.Access" glyphicon="main-icon fa fa-wrench" onclick="toggleMaintenanceSubMenu();" data-toggle="collapse" id="maintenanceMenuHeader">
+
+			<siteMapNode title="Maintenance" roles="Maintenance.Access"  url="~/Maintenance/Maintenance.aspx" class="list-group-item box" id="maintenance1"></siteMapNode>
+			<siteMapNode title="Users" roles="Maintenance.Users" url="~/Maintenance/Users.aspx"  class="list-group-item box" id="maintenance2" ></siteMapNode>
+			<siteMapNode title="Security" roles="Maintenance.Security" url="~/Maintenance/Security.aspx" class="list-group-item box" id="maintenance3"></siteMapNode>
+			<siteMapNode title="SystemSettings" roles="Maintenance.Access" url="~/Maintenance/SystemSettings.aspx" class="list-group-item box" id="maintenance4"></siteMapNode>
+     
+
+		</siteMapNode>
+
+    <siteMapNode title="Products" roles="Maintenance.Access" url="~/Maintenance/Products.aspx" class="list-group-item box" id="maintenance4" glyphicon="main-icon fa fa-tags"   />
+    
+    <siteMapNode title="Orders" roles="Maintenance.Access" url="~/Maintenance/Orders.aspx" class="list-group-item box" id="maintenance4"  glyphicon="main-icon fa fa-book "/>
+   
+
+    <siteMapNode title="Shop" roles="Customer.Access" url="~/Public/Shop.aspx" class="list-group-item box"  glyphicon="main-icon fa fa-credit-card" />
+		<siteMapNode url="~/Public/About.aspx" glyphicon="main-icon fa fa-user" title="About" />
+    
+  
+    
+
+	</siteMapNode>
+</siteMap>

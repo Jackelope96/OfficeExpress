@@ -1,0 +1,9 @@
+[submodule "Submodules/Singular.Server"]
+	path = Submodules/Singular.Server
+	url = git@bitbucket.org:iiintel/singular.server.git
+[submodule "Submodules/Singular.Web"]
+	path = Submodules/Singular.Web
+	url = git@bitbucket.org:iiintel/singular.web.git
+[submodule "Submodules/Singular.Service"]
+	path = Submodules/Singular.Service
+	url = git@bitbucket.org:iiintel/singular.service.git
