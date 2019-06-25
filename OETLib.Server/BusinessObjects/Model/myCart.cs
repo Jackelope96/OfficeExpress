@@ -241,7 +241,7 @@ namespace OETLib.BusinessObjects.Model
             cm.Parameters.AddWithValue("@OrderDate", GetProperty(OrderDateProperty));
             cm.Parameters.AddWithValue("@ProcessStatusID", GetProperty(ProcessStatusIDProperty));
             AddPrimaryKeyParam(cm, OrderDetailsIDProperty);
-            cm.Parameters.AddWithValue("@ProductPrice", GetProperty(UnitPriceProperty));
+            cm.Parameters.AddWithValue("@ProductPrice", GetProperty(ProductPriceProperty));
 
 
             return (scm) =>
