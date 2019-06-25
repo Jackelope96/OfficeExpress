@@ -11,15 +11,13 @@
 			<siteMapNode title="Users" roles="Maintenance.Users" url="~/Maintenance/Users.aspx"  class="list-group-item box" id="maintenance2" ></siteMapNode>
 			<siteMapNode title="Security" roles="Maintenance.Security" url="~/Maintenance/Security.aspx" class="list-group-item box" id="maintenance3"></siteMapNode>
 			<siteMapNode title="SystemSettings" roles="Maintenance.Access" url="~/Maintenance/SystemSettings.aspx" class="list-group-item box" id="maintenance4"></siteMapNode>
+      <siteMapNode title="Reports" roles="Maintenance.Access" url="~/Maintenance/Reports.aspx" class="list-group-item box" id="maintenance4"></siteMapNode>
      
 
 		</siteMapNode>
 
     <siteMapNode title="Products" roles="Maintenance.Access" url="~/Maintenance/Products.aspx" class="list-group-item box" id="maintenance4" glyphicon="main-icon fa fa-tags"   />
-    
     <siteMapNode title="Orders" roles="Maintenance.Access" url="~/Maintenance/Orders.aspx" class="list-group-item box" id="maintenance4"  glyphicon="main-icon fa fa-book "/>
-   
-
     <siteMapNode title="Shop" roles="Customer.Access" url="~/Public/Shop.aspx" class="list-group-item box"  glyphicon="main-icon fa fa-credit-card" />
 		<siteMapNode url="~/Public/About.aspx" glyphicon="main-icon fa fa-user" title="About" />
     
