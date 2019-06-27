@@ -77,6 +77,8 @@
     <Compile Include="BusinessObjects\Security\UserList.cs" />
     <Compile Include="BusinessObjects\SystemSettings\Correspondence.cs" />
     <Compile Include="CommonData.cs" />
+    <Compile Include="General\GeneralUser.cs" />
+    <Compile Include="General\GeneralUserList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\OETIdentity.cs" />
     <Compile Include="Security\OETWebSecurity.cs" />

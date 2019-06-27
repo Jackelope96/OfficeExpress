@@ -302,57 +302,7 @@ namespace OETWeb.Maintenance
 
 
         }
-        
-
-
-        [WebCallable]
-        public static Result ExportData()
-        {
-            var webRes = new Result(false);
-
-            try
-            {
-                ////OETLib.BusinessObjects.Model.ProductList productList = OETLib.BusinessObjects.Model.ProductList.GetProductList();
-                //OETLib.BusinessObjects.Model.myCartList myCartList = OETLib.BusinessObjects.Model.myCartList.GetmyCartList();
-                //string path = @"C:\Clients\officeexpress.tuckshop\myCartListAAAA.xlsx";
-                //MemoryStream ms = new MemoryStream();
-                ////FileStream fs = new FileStream(path,FileMode.OpenOrCreate);
-                //FileInfo fi = new FileInfo(path);
-                //Singular.Data.ExcelExporter ee = new Singular.Data.ExcelExporter(Infragistics.Documents.Excel.WorkbookFormat.Excel2007);
-                //var balancesSheet = ee.WorkBook.Worksheets.Add("TakeOnBalanceComparison");
-                ////balancesSheet.Rows(1).Cells(2).ApplyFormula("=A1+B1");
-                //var balance = ee.WorkBook.Worksheets.Add("11");
-                //ee.PopulateData(myCartList, balancesSheet);
-
-                //// Save workbook to file
-                //ee.ShowTotalsRow = false;
-                //TableRow r = new TableRow();
-                ////ee.PopulateData(productList);
-
-                //ee.WorkBook.Save(path);
-                //webRes.Success = true;
-
-                Microsoft.Office.Interop.Excel.Application xobj = new Microsoft.Office.Interop.Excel.Application();
-                xobj.DisplayAlerts = false;
-                Microsoft.Office.Interop.Excel.Workbook wb = xobj.Workbooks.Open(@"C:\Users\JVanzyl\Documents\BES\Invoice_template.xlsx"); 
-                Microsoft.Office.Interop.Excel.Worksheet sheet = (Microsoft.Office.Interop.Excel.Worksheet)xobj.ActiveSheet;
-               
-                sheet.Cells[3, 3] = "AAA";
-                wb.SaveAs(@"C:\test5.xlsx");  // or book.Save();
-                wb.Close();
-
-
-
-
-            }
-            catch(Exception e)
-            {
-                webRes.ErrorText = e.Message;
-            }
-
-            return webRes;
-        }
-
+       
         [WebCallable(Roles = new string[] { "Security.Manage Users" })]
         public static Result DeleteProduct(int productId)
         {

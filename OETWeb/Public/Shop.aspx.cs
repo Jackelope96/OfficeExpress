@@ -36,6 +36,7 @@ namespace OETWeb.Public
         public OETLib.BusinessObjects.Model.myCart Cart { get; set; }
         public OETLib.BusinessObjects.Model.CategoryList CategoryList { get; set; }
         public OETLib.BusinessObjects.Model.OrderDetailList OrderDetailList { get; set; }
+        public OETLib.Server.General.GeneralUserList  getUser{ get; set; }
         private bool _ShowCart = false;
 
         public bool ShowCart
@@ -66,9 +67,10 @@ namespace OETWeb.Public
             OrderDetailList = OETLib.BusinessObjects.Model.OrderDetailList.GetOrderDetailList();
             // MyCartList = OETLib.BusinessObjects.Model.myCartList.GetmyCartList();                    
             InventoryList = OETLib.BusinessObjects.Model.EditInventoryList.GetEditInventoryList();
+            getUser = OETLib.Server.General.GeneralUserList.GetGeneralUserList(userid);
 
             //Add this to the order button as well
-            foreach (OETLib.BusinessObjects.Model.myCart item in MyCartList)
+      foreach (OETLib.BusinessObjects.Model.myCart item in MyCartList)
             {
                 totalMonthPrice = totalMonthPrice + (item.ProductQuantity *item.ProductPrice);
             }
