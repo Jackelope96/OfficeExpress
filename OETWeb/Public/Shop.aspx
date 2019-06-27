@@ -168,36 +168,6 @@
 
 
       }
-
-
-      //var dialog = h.Dialog(
-      //   c => c.Cart != null,
-      //   c => ((c.Cart != null) && (c.Cart.IsNew)) ? "My Cart" : "My Cart",
-      //   "CancelEdit");
-      //{
-
-      //    dialog.Style.Width = "600";
-      //    dialog.Style.Height = "550";
-      //    var table = dialog.Helpers.TableFor<OETLib.BusinessObjects.Model.myCart>(c => c.MyCartList, false, false);//.OrderByDescending(d=>d.OrderDate)
-      //    {
-      //        var productname = table.FirstRow.AddReadOnlyColumn(c => c.ProductName);
-      //        table.FirstRow.AddReadOnlyColumn(c => c.ProductQuantity);
-      //        table.FirstRow.AddReadOnlyColumn(c => c.ProductPrice);
-      //        var orderDate = table.FirstRow.AddReadOnlyColumn(c => c.OrderDate);
-      //        // oDate.CellBindings.Add(Singular.Web.KnockoutBindingString.css, "OrderDateIsToday($data.OrderDate()) ? 'background-colour-highlight' : 'background-colour-highlightfalse'");
-      //        table.FirstRow.AddReadOnlyColumn(c => c.TotalPrice);
-      //        var DeleteColumn = table.FirstRow.AddColumn();
-      //        var pStatus = table.FirstRow.AddColumn();
-      //        pStatus.Style.Width = "150";
-      //        pStatus.CellBindings.Add(Singular.Web.KnockoutBindingString.css, "checkStatus($data.ProcessStatus()) ? 'background-colour-highlight' : 'background-colour-highlightfalse'");
-
-
-      //    }
-
-      //    dialog.AddConfirmationButtons("Save", "", "");
-      //}//cart panel
-
-
       var dialog = h.Dialog(
          c => c.ShowCart == true,
          c => ((c.ShowCart == true)) ? "My Cart" : "My Cart",
@@ -222,11 +192,11 @@
           var btnCancel = cancelColum.Helpers.Button("Cancel", Singular.Web.ButtonMainStyle.Default, Singular.Web.ButtonSize.Tiny, Singular.Web.FontAwesomeIcon.remove);
           btnCancel.AddBinding(Singular.Web.KnockoutBindingString.visible, "CheckOrder($data.ProcessStatusID())");
           btnCancel.AddBinding(Singular.Web.KnockoutBindingString.click, "CancelOrder($data)");
-          
+
           h.HTML(
             "<label id =\"lbldeduct\">Deduct from salary ? </label><br>" +
-            "<input type = \"checkbox\"  name = \"deduct\" value=\"0\" > No<br>" +
-            "<input type = \"checkbox\"  name = \"deduct\" value=\"1\" > Yes<br>"
+            "<input type = \"checkbox\"  name = \"deduct\" value=\"0\"  onclick = \"ChangeDeduct(0)\" > No<br>" +
+            "<input type = \"checkbox\"  name = \"deduct\" value=\"1\" onclick = \"ChangeDeduct(1)\"> Yes<br>"
 
            );
         }
@@ -240,8 +210,8 @@
   <script type="text/javascript">
 
     window.onload = function () {
-            checkDeduct();
-        };
+      checkDeduct();
+    };
 
     var createOrder = function (Product) {
 
@@ -262,7 +232,7 @@
       //    });
     }
 
-   
+
     var ViewCart = function () {
       ViewModel.CallServerMethod('GetCart', { ShowLoadingBar: true }, function (result) {
         if (result.Success) {
@@ -274,9 +244,46 @@
     }
 
     var checkDeduct = function () {
-      ViewModel.getUser();
+      ViewModel.CallServerMethod('GetDeductID', { ShowLoadingBar: true }, function (result) {
+        if (result.Success) {
+          var box = document.getElementsByName('deduct');
+          var deduct = result.Data;
+          if (deduct == 0) {
+            box[0].checked = true;
+            box[1].checked = false;
+          }
+          else if (deduct == 1) {
+            box[0].checked = false;
+            box[1].checked = true;
+          }
+        }
+      });
+    }
+
+    var ChangeDeduct = function (data) {
+      var box = document.getElementsByName('deduct');
+      if (data == 0) {
+        box[0].checked = true;
+        box[1].checked = false;
+      } else if (data == 1) {
+        box[1].checked = true;
+        box[0].checked = false;
+      }
+
+      ViewModel.CallServerMethod('ChangeDeductID', {deduct : data, ShowLoadingBar: true }, function (result) {
+        if (result.Success) {
+          if(data == 1)
+            Singular.AddMessage(3, 'Salary deduction', 'Orders WILL be deducted from your salary').Fade(2000);
+          if (data == 0)
+            Singular.AddMessage(3, 'Cash', 'Orders WILL NOT be deducted from your salary').Fade(2000);
+        } else {
+          alert("There was a problem changing your 'Deduct from salary status changed");
+        }
+      });
+
 
     }
+
     var CancelEdit = function () {
       ViewModel.Cart.Clear();
     }
