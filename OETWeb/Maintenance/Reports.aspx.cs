@@ -124,6 +124,10 @@ namespace OETWeb.Maintenance
         ws.Cells[21 + itemNumber + 1, 5].Style.Font.Bold = true;
         ws.Cells[21 + itemNumber + 1, 6].Value = "R" + invoiceTotal;
 
+        // Print deductable from salary 
+        if (user.DeductID == 1)
+          ws.Cells[17, 6].Value = "Deduct from salary";
+        else { ws.Cells[17, 6].Value = "Cash"};
       }
       catch (Exception e)
       {

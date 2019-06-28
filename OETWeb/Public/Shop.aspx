@@ -24,7 +24,7 @@
     }
 
     .btn-min {
-      background-color: #ff6666;
+      background-color: #a94442;
     }
 
 
@@ -43,7 +43,12 @@
     }
 
     .backgroundRed {
-      background-color: #ff6666;
+      background-color: #a94442;
+    }
+    .redDiv{
+      
+      width:50%;
+      
     }
 
     .alignmentt {
@@ -94,11 +99,12 @@
       var FilterDiv1 = Helpers.DivC("row col-md-9");
       {
 
-        var cartAmountlbl = Helpers.Bootstrap.LabelDisplay("  cart total : R" + (cartAmount));
+        var cartAmountlbl = Helpers.Bootstrap.LabelDisplay(" cart total : R" + (cartAmount)).AddClass("h2");
+        cartAmountlbl.AddClass("h2");
 
         cartAmount = ViewModel.totalMonthPrice;
-        cartAmountlbl.AddClass("alignmentt lblFont");
-        cartAmountlbl.Style.FontSize = "20px";
+        cartAmountlbl.AddClass("alignmentt");
+       
 
         var btnCart = Helpers.Button("View cart", Singular.Web.ButtonMainStyle.Success, Singular.Web.ButtonSize.Tiny, Singular.Web.FontAwesomeIcon.shoppingCart);
         btnCart.AddBinding(Singular.Web.KnockoutBindingString.click, "ViewCart()");
@@ -112,7 +118,7 @@
         //var grid = panel.Helpers.TableFor<OETLib.BusinessObjects.Model.Product>(c => c.ProductList, false, false);
         var grid = panel.Helpers.TableFor<OETLib.BusinessObjects.Model.Product>(c => c.ProductList, false, false);
         {
-          grid.AddClass("table-responsive table table-bordered");
+          grid.AddClass("table-responsive table table-bordered  thead-dark table-active");
           grid.Style.Margin("10px");
           //grid.AddClass("btn");
 
@@ -160,8 +166,8 @@
         var totalRow = Helpers.HTML(
 
 
-            "<label class =\"lbl ViewCart\" id =\"lblAmount\">0 </label>" +
-             "<label class =\"lbl ViewCart\" id=\"mylbl\">Total :R </label>"
+            "<label class =\"h2 ViewCart \" id =\"lblAmount\">0 </label>" +
+             "<label class =\"h2  ViewCart\" id=\"mylbl\">Total :R </label>"
             );
 
         //btnOrder.AddClass("btn");
@@ -178,6 +184,7 @@
         dialog.Style.Height = "550";
         var table = dialog.Helpers.TableFor<OETLib.BusinessObjects.Model.myCart>(c => c.MyCartList, false, false);//.OrderByDescending(d=>d.OrderDate)
         {
+          table.FirstRow.AddClass("table-responsive table table-bordered  thead-dark table-active");
           var productname = table.FirstRow.AddReadOnlyColumn(c => c.ProductName);
           table.FirstRow.AddReadOnlyColumn(c => c.ProductQuantity);
           table.FirstRow.AddReadOnlyColumn(c => c.ProductPrice);
@@ -193,12 +200,19 @@
           btnCancel.AddBinding(Singular.Web.KnockoutBindingString.visible, "CheckOrder($data.ProcessStatusID())");
           btnCancel.AddBinding(Singular.Web.KnockoutBindingString.click, "CancelOrder($data)");
 
-          h.HTML(
-            "<label id =\"lbldeduct\">Deduct from salary ? </label><br>" +
-            "<input type = \"checkbox\"  name = \"deduct\" value=\"0\"  onclick = \"ChangeDeduct(0)\" > No<br>" +
-            "<input type = \"checkbox\"  name = \"deduct\" value=\"1\" onclick = \"ChangeDeduct(1)\"> Yes<br>"
+          dialog.Helpers.HTML(
+            "<label style = \"lblFont\"  id =\"lbldeduct\">Deduct from salary ? </label><br>" +
+            "<input type = \"checkbox\" class = \"form-check\" name = \"deduct\" value=\"0\"  onclick = \"ChangeDeduct(0)\" > No<br>" +
+            "<input type = \"checkbox\"  class = \"form-check\" name = \"deduct\" value=\"1\" onclick = \"ChangeDeduct(1)\"> Yes<br>"
 
            );
+
+          h.HTML(
+          
+          "<Div class = \"alert alert-danger redDiv\" id = \"outOfStock\" >" +
+          "</Div>"
+            
+            );
         }
         dialog.AddConfirmationButtons("Close", "Hide()", "");
       }//cart panel
@@ -212,27 +226,6 @@
     window.onload = function () {
       checkDeduct();
     };
-
-    var createOrder = function (Product) {
-
-
-      //    var jsonProduct = Product.Serialise()
-
-      //    ViewModel.CallServerMethod('CreateOrder', { product: jsonProduct,  ShowLoadingBar: true }, function (result) {
-      //        if (result.Success) {
-      //            Singular.AddMessage(3, 'Order added', 'Your order was added successfully.').Fade(2000);
-      //            ViewModel.MyCartList.set(result.Data)
-      //            Singular.AddMessage(3, 'Order added', 'Your order was added successfully.').Fade(2000);
-      //           //ViewModel.OrderList().Refresh();
-      //            ViewModel.OrderProduct.Clear();
-      //            Singular.AddMessage(3, 'Order added', 'Your order was added successfully.').Fade(2000);
-      //        } else {
-      //            alert(result.ErrorText);
-      //        }
-      //    });
-    }
-
-
     var ViewCart = function () {
       ViewModel.CallServerMethod('GetCart', { ShowLoadingBar: true }, function (result) {
         if (result.Success) {
@@ -270,9 +263,9 @@
         box[0].checked = false;
       }
 
-      ViewModel.CallServerMethod('ChangeDeductID', {deduct : data, ShowLoadingBar: true }, function (result) {
+      ViewModel.CallServerMethod('ChangeDeductID', { deduct: data, ShowLoadingBar: true }, function (result) {
         if (result.Success) {
-          if(data == 1)
+          if (data == 1)
             Singular.AddMessage(3, 'Salary deduction', 'Orders WILL be deducted from your salary').Fade(2000);
           if (data == 0)
             Singular.AddMessage(3, 'Cash', 'Orders WILL NOT be deducted from your salary').Fade(2000);
@@ -280,8 +273,6 @@
           alert("There was a problem changing your 'Deduct from salary status changed");
         }
       });
-
-
     }
 
     var CancelEdit = function () {
@@ -344,9 +335,6 @@
 
     var CanDisableAdd = function (data) {
       var b = false;
-      //if (data.SInfo.Properties[4]() != 0)
-      //{
-
       ViewModel.InventoryList().forEach(function (item) {
 
         if (parseInt(item.SInfo.Properties[9]()) === parseInt(data.SInfo.Properties[6]())) {
@@ -359,11 +347,7 @@
             b = false;
           }
         }
-
       });
-      //}
-
-
 
       if (b == true) {
         return true;
@@ -387,9 +371,6 @@
         return true;
       }
     }
-
-
-
 
     var ChangeQuantity = function (data, count) {
       var productQuantity = data.SInfo.Properties[4]();
@@ -449,15 +430,6 @@
           alert(result.ErrorText);
         }
       });
-
-      //var totMonth = 0;
-      //ViewModel.MyCartList().forEach(function (item) {
-      //    totMonth = totMonth + (item.SInfo.Properties[7]() * item.SInfo.Properties[13]());    
-      //});
-
-      //let lblTotMonth = document.getElementById('monthlbl'); 
-      //lblTotMonth.innerText = totMonth;
-
     }
 
     //Test the inventory
@@ -471,7 +443,10 @@
             if (item.SInfo.Properties[6]() === productQuantity) {
 
               b = true;
-              Singular.AddMessage(2, 'Out of stock', 'there is only ' + productQuantity + ' items left of that product').Fade(2000);
+              //Singular.AddMessage(2, 'Out of stock', 'there is only ' + productQuantity + ' items left of that product').Fade(2000);
+               var redDiv = document.getElementById('outOfStock');
+              redDiv.innerText += ("\n"+"Sorry, it seems that "+ item.ProductName()) + "is out of stock";
+
 
             }
             else {
@@ -486,7 +461,7 @@
       }
 
       if (b == true) {
-
+        
         return false;
       }
       else {
@@ -520,24 +495,27 @@
       var jsonorder = Order.Serialise();
       ViewModel.CallServerMethod('CancelOrder', { order: jsonorder, ShowLoadingBar: true }, function (result) {
         if (result.Success) {
-
           Singular.AddMessage(3, 'Order cancelled', 'Your order was cancelled successfully.').Fade(2000);
           ViewModel.MyCartList.Set(result.Data);
+          ViewModel.ProductList().forEach(function (product) {
+            checkInventory(product);
+          });
           ViewModel.CallServerMethod('UpdateInventoryList', { ShowLoadingBar: true }, function (result2) {
             if (result2.Success) {
               ViewModel.InventoryList.Set(result2.Data);
+
+              ViewModel.CallServerMethod('UpdateProductList', { ShowLoadingBar: true }, function (result3) {
+                if (result3.Success) {
+                  ViewModel.ProductList.Set(result3.Data);
+                }
+
+              });
             }
             else {
               alert(result2.ErrorText);
             }
           });
-          ViewModel.CallServerMethod('UpdateProductList', { ShowLoadingBar: true }, function (result3) {
-            if (result3.Success) {
-              ViewModel.ProductList.Set(result3.Data);
 
-
-            }
-          });
 
         }
       });

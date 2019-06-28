@@ -1,16 +1,6 @@
-﻿using OETLib.Server;
-using Singular.Web.Data;
-using Singular.Security;
-using Singular.Web;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.Security;
-using System.Runtime.Serialization.Formatters;
-using System.Data.Linq;
+using Singular.Web;
 
 namespace OETWeb.Public
 {
@@ -233,8 +223,7 @@ namespace OETWeb.Public
       Result webRes = new Result(false);
       try
       {
-        // OETLib.BusinessObjects.Model.ProductList productlist = OETLib.BusinessObjects.Model.ProductList.GetProductList();
-        OETLib.BusinessObjects.Model.InventoryList inventorylist = OETLib.BusinessObjects.Model.InventoryList.GetInventoryList();
+        OETLib.BusinessObjects.Model.EditInventoryList inventorylist = OETLib.BusinessObjects.Model.EditInventoryList.GetEditInventoryList();
         webRes.Data = inventorylist;
         webRes.Success = true;
       }
@@ -332,7 +321,6 @@ namespace OETWeb.Public
       try
       {
         var userid = Singular.Settings.CurrentUserID;
-        //var guser = OETLib.Server.General.GeneralUserList.GetGeneralUserList(userid).FirstOrDefault(c => c.UserID == userid);
         var guser = OETLib.BusinessObjects.Model.ROUserList.GetROUserList().FirstOrDefault(c => c.UserID == userid);
         webRes.Success = true;
         webRes.Data = guser.DeductID;
@@ -352,7 +340,7 @@ namespace OETWeb.Public
       var userid = Singular.Settings.CurrentUserID;
       try
       {
-        var changeUser = OETLib.Server.General.GeneralUserList.GetGeneralUserList(userid).FirstOrDefault(c =>c.UserID == userid);
+        var changeUser = OETLib.Server.General.GeneralUserList.GetGeneralUserList(userid).FirstOrDefault(c => c.UserID == userid);
         changeUser.DeductID = deduct;
         changeUser.TrySave(typeof(OETLib.Server.General.GeneralUserList));
         webres.Success = true;
