@@ -127,7 +127,7 @@ namespace OETWeb.Maintenance
         // Print deductable from salary 
         if (user.DeductID == 1)
           ws.Cells[17, 6].Value = "Deduct from salary";
-        else { ws.Cells[17, 6].Value = "Cash"};
+        else { ws.Cells[17, 6].Value = "Cash"; };
       }
       catch (Exception e)
       {

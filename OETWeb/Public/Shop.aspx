@@ -45,10 +45,9 @@
     .backgroundRed {
       background-color: #a94442;
     }
-    .redDiv{
-      
-      width:50%;
-      
+
+    .redDiv {
+      width: 50%;
     }
 
     .alignmentt {
@@ -104,7 +103,7 @@
 
         cartAmount = ViewModel.totalMonthPrice;
         cartAmountlbl.AddClass("alignmentt");
-       
+
 
         var btnCart = Helpers.Button("View cart", Singular.Web.ButtonMainStyle.Success, Singular.Web.ButtonSize.Tiny, Singular.Web.FontAwesomeIcon.shoppingCart);
         btnCart.AddBinding(Singular.Web.KnockoutBindingString.click, "ViewCart()");
@@ -129,7 +128,7 @@
             firstGridRow.Style.Padding("1000");
 
             var prodName = firstGridRow.AddReadOnlyColumn(c => c.ProductName);
-            prodName.CellBindings.Add(Singular.Web.KnockoutBindingString.css, "checkInventory($data) ? 'background-color-normal' : 'backgroundRed '");
+            prodName.CellBindings.Add(Singular.Web.KnockoutBindingString.css, "checkInventory($data) ? 'background-color-normal' : 'background-color-normal '");
             firstGridRow.AddReadOnlyColumn(c => c.ProductPrice.ToString());
 
             firstGridRow.AddReadOnlyColumn(c => c.ProductQuantity);
@@ -208,10 +207,10 @@
            );
 
           h.HTML(
-          
+
           "<Div class = \"alert alert-danger redDiv\" id = \"outOfStock\" >" +
           "</Div>"
-            
+
             );
         }
         dialog.AddConfirmationButtons("Close", "Hide()", "");
@@ -434,39 +433,27 @@
 
     //Test the inventory
     var checkInventory = function (data) {
+      var outofstock = [];
       var b = false;
       var productQuantity = data.SInfo.Properties[4]();
-
-      if (data.ProductQuantity != 0) {
+    
         ViewModel.InventoryList().forEach(function (item) {
-          if (parseInt(item.SInfo.Properties[9]()) === parseInt(data.SInfo.Properties[6]())) {
-            if (item.SInfo.Properties[6]() === productQuantity) {
+          if ((parseInt(item.SInfo.Properties[9]()) === parseInt(data.SInfo.Properties[6]()) && item.SInfo.Properties[6]() < productQuantity) || item.SInfo.Properties[6]() === 0){
 
-              b = true;
-              //Singular.AddMessage(2, 'Out of stock', 'there is only ' + productQuantity + ' items left of that product').Fade(2000);
-               var redDiv = document.getElementById('outOfStock');
-              redDiv.innerText += ("\n"+"Sorry, it seems that "+ item.ProductName()) + "is out of stock";
-
+            if (outofstock.indexOf(item.ProductName()) === -1) {
+                //b = data.ProductName() === item.ProductName();
+                outofstock.push(item.ProductName());
+              }
 
             }
-            else {
-              return true;
-            }
-          }
-          else {
-            return true;
-          }
         });
-
-      }
-
-      if (b == true) {
-        
-        return false;
-      }
-      else {
-        return true;
-      }
+        var redDiv = document.getElementById('outOfStock');
+        redDiv.innerText = '';
+        outofstock.forEach(function (item) {
+          redDiv.innerHTML +="Sorry, it seems that " + item + " is out of stock.<br/>";
+        });
+        outofstock = [];
+      return !b;
     }
 
     var loadtest = function () {
