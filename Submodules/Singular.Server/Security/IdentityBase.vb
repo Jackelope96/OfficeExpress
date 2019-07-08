@@ -1,11 +1,8 @@
 ﻿Imports Csla
-Imports Csla.Serialization
-Imports System.ComponentModel.DataAnnotations
-Imports System.Linq
 
 Namespace Security
 
-  <Serializable()> _
+  <Serializable()>
   Public MustInherit Class IdentityBase(Of i As IdentityBase(Of i))
     Inherits Csla.Security.CslaIdentityBase(Of i)
     Implements IIdentity
@@ -183,7 +180,7 @@ Namespace Security
           Using sdr As New Csla.Data.SafeDataReader(cm.ExecuteReader)
 
             If sdr.Read Then
-
+              ' Stuff breaks here => Jaco
               'If the stored proc returns a result, then the user is authenticated.
               IsAuthenticated = True
 

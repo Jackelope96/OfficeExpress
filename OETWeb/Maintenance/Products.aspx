@@ -8,12 +8,12 @@
      <style type="text/css">
        .background-colour-highlightGreen {
            
-           background-color: #ADEE92;
+           
 
        }
 
        .background-colour-highlightRed{
-           background-color :#EEA792;
+           background-color :#a94442;
        }
 
 
@@ -23,7 +23,7 @@
        }
 
         .btn-min {
-            background-color: #ff6666;
+            background-color: #a94442;
         }
         .align{
             text-align : left;
@@ -49,8 +49,7 @@
         h.MessageHolder();
         var btnNewProduct =  h.Button( Singular.Web.DefinedButtonType.Save , "New Product");
         btnNewProduct.AddBinding(Singular.Web.KnockoutBindingString.click, "EditProduct()");
-        var excelBtn = h.Button(Singular.Web.DefinedButtonType.Export, "Export");
-       excelBtn.AddBinding(Singular.Web.KnockoutBindingString.click, "Export()");
+        
 
         var panel = h.Div();
         {
@@ -325,20 +324,6 @@
 
             });
         }
-
-        var Export = function ()
-        {
-            ViewModel.CallServerMethod('ExportData', {  ShowLoadingBar: true }, function (result) {
-                if (result.Success) {
-                    Singular.AddMessage(3, 'Export', 'Productlist has been exported successfully.').Fade(2000);
-                } else {
-                    alert(result.ErrorText);
-                }
-            });
-        }
-
-     
-
         var checInventory = function(currentInv)
         {
             if (currentInv < 20)

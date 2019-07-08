@@ -100,28 +100,20 @@
 
         var cartAmountlbl = Helpers.Bootstrap.LabelDisplay(" cart total : R" + (cartAmount)).AddClass("h2");
         cartAmountlbl.AddClass("h2");
-
         cartAmount = ViewModel.totalMonthPrice;
         cartAmountlbl.AddClass("alignmentt");
-
-
         var btnCart = Helpers.Button("View cart", Singular.Web.ButtonMainStyle.Success, Singular.Web.ButtonSize.Tiny, Singular.Web.FontAwesomeIcon.shoppingCart);
         btnCart.AddBinding(Singular.Web.KnockoutBindingString.click, "ViewCart()");
-        //btnCart.AddBinding(Singular.Web.KnockoutBindingString.click, "show()");
       }
 
       var panel = h.Div();
       {
         panel.AddClass("Panel");
         panel.Style.Margin("10px");
-        //var grid = panel.Helpers.TableFor<OETLib.BusinessObjects.Model.Product>(c => c.ProductList, false, false);
         var grid = panel.Helpers.TableFor<OETLib.BusinessObjects.Model.Product>(c => c.ProductList, false, false);
         {
           grid.AddClass("table-responsive table table-bordered  thead-dark table-active");
           grid.Style.Margin("10px");
-          //grid.AddClass("btn");
-
-
           var firstGridRow = grid.FirstRow;
           {
             firstGridRow.AddClass("table-responsive table table-bordered");
@@ -140,16 +132,18 @@
             btnPlus.AddBinding(Singular.Web.KnockoutBindingString.disable, "CanDisableAdd($data)");
             btnPlus.AddBinding(Singular.Web.KnockoutBindingString.click, "ChangeQuantity($data,1)");
             btnPlus.AddClass("btn-add");
-            // var minusQuantity = firstGridRow.AddColumn();
             var btnMin = plusQuantity.Helpers.Button("", Singular.Web.ButtonMainStyle.Default, Singular.Web.ButtonSize.Normal, Singular.Web.FontAwesomeIcon.minus);
             btnMin.AddBinding(Singular.Web.KnockoutBindingString.click, "ChangeQuantity($data,-1)");
             btnMin.AddBinding(Singular.Web.KnockoutBindingString.disable, "CanDisable($data)");
             btnMin.AddClass("btn-min");
+            firstGridRow.AddColumnGroup("On Demand");
 
           }
         }
 
       } // panel
+
+      
 
       var panelTotal = h.Div();
       {
@@ -436,23 +430,22 @@
       var outofstock = [];
       var b = false;
       var productQuantity = data.SInfo.Properties[4]();
-    
-        ViewModel.InventoryList().forEach(function (item) {
-          if ((parseInt(item.SInfo.Properties[9]()) === parseInt(data.SInfo.Properties[6]()) && item.SInfo.Properties[6]() < productQuantity) || item.SInfo.Properties[6]() === 0){
 
-            if (outofstock.indexOf(item.ProductName()) === -1) {
-                //b = data.ProductName() === item.ProductName();
-                outofstock.push(item.ProductName());
-              }
+      ViewModel.InventoryList().forEach(function (item) {
+        if ((parseInt(item.SInfo.Properties[9]()) === parseInt(data.SInfo.Properties[6]()) && item.SInfo.Properties[6]() < productQuantity) || item.SInfo.Properties[6]() === 0) {
 
-            }
-        });
-        var redDiv = document.getElementById('outOfStock');
-        redDiv.innerText = '';
-        outofstock.forEach(function (item) {
-          redDiv.innerHTML +="Sorry, it seems that " + item + " is out of stock.<br/>";
-        });
-        outofstock = [];
+          if (outofstock.indexOf(item.ProductName()) === -1) {
+            //b = data.ProductName() === item.ProductName();
+            outofstock.push(item.ProductName());
+          }
+        }
+      });
+      var redDiv = document.getElementById('outOfStock');
+      redDiv.innerText = '';
+      outofstock.forEach(function (item) {
+        redDiv.innerHTML += "Sorry, it seems that " + item + " is out of stock.<br/>";
+      });
+      outofstock = [];
       return !b;
     }
 

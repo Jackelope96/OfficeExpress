@@ -337,12 +337,12 @@ namespace OETWeb.Public
     public Result ChangeDeductID(int deduct)
     {
       Result webres = new Result();
-      var userid = Singular.Settings.CurrentUserID;
       try
       {
+        var userid = Singular.Settings.CurrentUserID;
         var changeUser = OETLib.Server.General.GeneralUserList.GetGeneralUserList(userid).FirstOrDefault(c => c.UserID == userid);
         changeUser.DeductID = deduct;
-        changeUser.TrySave(typeof(OETLib.Server.General.GeneralUserList));
+        var r = changeUser.TrySave(typeof(OETLib.Server.General.GeneralUserList));
         webres.Success = true;
       }
       catch
