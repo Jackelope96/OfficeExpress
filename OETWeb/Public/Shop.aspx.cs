@@ -15,6 +15,7 @@ namespace OETWeb.Public
     public int totUnitPrice = 0;
     public decimal totalMonthPrice = 0;
     public OETLib.BusinessObjects.Model.ProductList ProductList { get; set; }
+    public OETLib.BusinessObjects.Model.ProductList OnDemandList { get; set; }
     public OETLib.BusinessObjects.Model.EditInventoryList InventoryList { get; set; }
     public String searchproduct { get; set; }
     public OETLib.BusinessObjects.Model.Inventory Inventory_Product { get; set; }
@@ -52,13 +53,14 @@ namespace OETWeb.Public
 
       base.Setup();
       var userid = Singular.Settings.CurrentUserID;
-      MyCartList = OETLib.BusinessObjects.Model.myCartList.GetmyCartList(userid);
-      ProductList = OETLib.BusinessObjects.Model.ProductList.GetProductList();
-      OrderList = OETLib.BusinessObjects.Model.OrderList.GetOrderList();
-      CategoryList = OETLib.BusinessObjects.Model.CategoryList.GetCategoryList();
-      OrderDetailList = OETLib.BusinessObjects.Model.OrderDetailList.GetOrderDetailList();
+      this.MyCartList = OETLib.BusinessObjects.Model.myCartList.GetmyCartList(userid);
+      this.ProductList = OETLib.BusinessObjects.Model.ProductList.GetProductList();
+      this.OrderList = OETLib.BusinessObjects.Model.OrderList.GetOrderList();
+      this.CategoryList = OETLib.BusinessObjects.Model.CategoryList.GetCategoryList();
+      this.OrderDetailList = OETLib.BusinessObjects.Model.OrderDetailList.GetOrderDetailList();
       // MyCartList = OETLib.BusinessObjects.Model.myCartList.GetmyCartList();                    
-      InventoryList = OETLib.BusinessObjects.Model.EditInventoryList.GetEditInventoryList();
+      this.InventoryList = OETLib.BusinessObjects.Model.EditInventoryList.GetEditInventoryList();
+      this.OnDemandList = OETLib.BusinessObjects.Model.ProductList.GetOnDemandProducts(13);
 
 
 

@@ -101,10 +101,6 @@
         {
             panelInventory.AddClass("Panel");
             panelInventory.Style.Margin("10px");
-            //panelInventory.Style.Width = "50";
-
-            //panel.Helpers.Button(Singular.Web.DefinedButtonType.Save , "Save");
-
             var grid = panelInventory.Helpers.TableFor<OETLib.BusinessObjects.Model.EditInventory>(c => c.EditInventoryList,  false, false);
             {
                 grid.AddClass("table-responsive table table-bordered");
@@ -130,7 +126,6 @@
 
                     currentInv.CellBindings.Add(Singular.Web.KnockoutBindingString.css, "checInventory($data.CurrentInventoryQuantity()) ? 'background-colour-highlightGreen' : 'background-colour-highlightRed'");
 
-
                 }
             }
         } // panelInventory
@@ -151,38 +146,11 @@
                 
                 dialogContent.Helpers.EditorRowFor(c => c.ItemCost);
                 r.AddClass("align");
-                
-
-
-                //dialogContent.Helpers.EditorRowFor(c => c.InventoryQuantity);
             }
 
             dialog.AddConfirmationButtons("Save", "SaveProduct()", "Cancel");
         }
 
-
-        //////Edit Inventory Item
-        //var dialog2 = h.Dialog(
-        //    c => c.EditInventoryProduct != null,
-        //    c => ((c.EditInventoryProduct != null)) ? "New Product" : "Edit Product",
-        //    "CancelEdit");
-        //{
-        //    dialog2.Style.Width = "600";
-
-        //    var dialogContent = dialog2.Helpers.With<OETLib.BusinessObjects.Model.Product>(c => c.EditInventoryProduct);
-        //    {
-
-        //        dialogContent.Helpers.ReadOnlyFor(c => c.ProductName);//.Editor.AddBinding(Singular.Web.KnockoutBindingString.enable, c => c.IsNew);
-        //        dialogContent.Helpers.EditorRowFor(c => c.InventoryQuantity);
-        //        dialogContent.Helpers.EditorRowFor(c => c.CurrentInventoryQuantity);
-        //        dialogContent.Helpers.EditorRowFor(c => c.InventoryCostPrice);
-
-
-
-        //        //dialogContent.Helpers.EditorRowFor(c => c.InventoryQuantity);
-        //    }
-        //    dialog2.AddConfirmationButtons("Save", "SaveItem()", "Cancel");
-        //}
 
         var dialogAdd = h.Dialog(
    c => c.EditInventoryItem != null,
@@ -197,8 +165,6 @@
             }
             dialogAdd.AddConfirmationButtons("Save", "SaveInventoryItem ()", "Cancel");
         }
-
-
 
     } %>
 

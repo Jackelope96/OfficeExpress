@@ -35,6 +35,10 @@
       background-color: #ADEE92;
     }
 
+    .category-black{
+      background-color :#eaedf0;
+      color : white;
+    }
 
 
 
@@ -51,10 +55,10 @@
     }
 
     .alignmentt {
-      text-align: right;
+      text-align: left;
       display: block;
       padding: 10px;
-      float: right;
+      float: left;
       position: relative;
     }
 
@@ -112,15 +116,17 @@
         panel.Style.Margin("10px");
         var grid = panel.Helpers.TableFor<OETLib.BusinessObjects.Model.Product>(c => c.ProductList, false, false);
         {
-          grid.AddClass("table-responsive table table-bordered  thead-dark table-active");
+          grid.AddClass("table-responsive table table-bordered  thead-dark table-active table-dark");
           grid.Style.Margin("10px");
           var firstGridRow = grid.FirstRow;
           {
             firstGridRow.AddClass("table-responsive table table-bordered");
             firstGridRow.Style.Padding("1000");
-
             var prodName = firstGridRow.AddReadOnlyColumn(c => c.ProductName);
+            prodName.AddClass("category-black");
             prodName.CellBindings.Add(Singular.Web.KnockoutBindingString.css, "checkInventory($data) ? 'background-color-normal' : 'background-color-normal '");
+
+            var category = firstGridRow.AddReadOnlyColumn(c => c.Category);
             firstGridRow.AddReadOnlyColumn(c => c.ProductPrice.ToString());
 
             firstGridRow.AddReadOnlyColumn(c => c.ProductQuantity);
@@ -136,15 +142,10 @@
             btnMin.AddBinding(Singular.Web.KnockoutBindingString.click, "ChangeQuantity($data,-1)");
             btnMin.AddBinding(Singular.Web.KnockoutBindingString.disable, "CanDisable($data)");
             btnMin.AddClass("btn-min");
-            firstGridRow.AddColumnGroup("On Demand");
-
           }
         }
-
       } // panel
-
       
-
       var panelTotal = h.Div();
       {
         panelTotal.AddClass("Panel");
@@ -275,12 +276,6 @@
 
     var monthCalc = function (_month) {
 
-
-      //var sdate = date.toString();
-      //var dateDay = sdate.substring(0, 2);
-      //var dateMonth = sdate.substring(3, 6);
-      //var dateYear = sdate.substring(7, 11);
-
       var today = new Date();
       var month = new Array();
       month[0] = "Jan";
@@ -297,11 +292,6 @@
       month[11] = "Dec";
 
       return (month[month - 1]);
-
-
-
-
-
     }
 
     var checkStatus = function (status) {
@@ -315,12 +305,10 @@
     var selectString = "";
     var totalAmount = 0;
     var objArray = new Array();
-    // var total = 0;
     var initial = false;
 
 
     var CanDisable = function (data) {
-      //if (data.SInfo.Properties[4]() == 0)
       if (data.SInfo.Properties[4]() == 0) {
         return true;
       }
@@ -407,7 +395,6 @@
         if (result.Success) {
 
           Singular.AddMessage(3, 'Order added', 'Your order was added successfully.').Fade(2000);
-          // ViewModel.ProductList.Set(result.Data);
           ViewModel.InventoryList.Set(result.Data);
           ViewModel.OrderProduct.Clear();
           ViewModel.CallServerMethod('UpdateProductList', { ShowLoadingBar: true }, function (result) {
@@ -425,7 +412,7 @@
       });
     }
 
-    //Test the inventory
+    // Test the inventory
     var checkInventory = function (data) {
       var outofstock = [];
       var b = false;
