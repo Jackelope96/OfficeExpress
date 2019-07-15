@@ -13,17 +13,17 @@
        }
 
        .background-colour-highlightRed{
-           background-color :#a94442;
+           background-color :#f2dede;
        }
 
 
        .btn-add{
-           background-color: #4286f4;
+           background-color: #3e9e91;
 
        }
 
         .btn-min {
-            background-color: #a94442;
+            background-color: #d16d6b;
         }
         .align{
             text-align : left;
@@ -55,9 +55,7 @@
         {
             panel.AddClass("Panel");
             panel.Style.Margin("10px");
-
-            //panel.Helpers.Button(Singular.Web.DefinedButtonType.Save , "Save");
-
+      
             var grid = panel.Helpers.TableFor<OETLib.BusinessObjects.Model.Product>(c => c.ProductList,  false, false);
             {
                 grid.AddClass("table-responsive table table-bordered");
@@ -140,7 +138,7 @@
             var dialogContent = dialog.Helpers.With<OETLib.BusinessObjects.Model.Product>(c => c.EditingProduct);
             {
 
-               dialogContent.Helpers.EditorRowFor(c => c.ProductName);//.Editor.AddBinding(Singular.Web.KnockoutBindingString.enable, c => c.IsNew);
+               dialogContent.Helpers.EditorRowFor(c => c.ProductName);
                var r =  dialogContent.Helpers.EditorRowFor(c => c.ProductPrice);
                 dialogContent.Helpers.EditorRowFor(c => c.CategoryID);
                 
@@ -177,18 +175,14 @@
                 ViewModel.IsNewItem = false;
                 var jsonproduct = Product.Serialise();
                  ViewModel.CallServerMethod('GetProduct', { ProductID: Product.ProductID(), ShowLoadingBar: true }, function (result) {
-               // ViewModel.CallServerMethod('GetProduct', { Product: jsonproduct, ShowLoadingBar: true }, function (result) {
                     if (result.Success)
                     {
-                       
                         ViewModel.EditingProduct.Set(result.Data);
-                       // ViewModel.EditingProduct().Refresh();
                     }
                 });
 
             } else {
                 //New
-                //ViewModel.NeedInventory = true;
                 ViewModel.IsNewItem = true;
                 ViewModel.EditingProduct.Set();
                
@@ -211,7 +205,6 @@
                        ViewModel.ProductList.Add(ViewModel.EditingProduct());
                        ViewModel.CallServerMethod('SaveInventoryProduct', { Product: jsonproduct, productid: newID, ShowLoadingBar: true }, function (result2) {
                            if (result2.Success) {
-                               //I think this needs to be added to a table that is in the database actually. ex InventoryList
                                ViewModel.EditInventoryList.Set(result2.Data);
                                ViewModel.EditingProduct.Clear();
                                Singular.AddMessage(3, 'Saved', 'Product has been saved successfully.').Fade(2000);
@@ -227,48 +220,22 @@
                ViewModel.CallServerMethod('UpdateProduct', { Product: jsonproduct, ShowLoadingBar: true }, function (result4) {
                    if (result4.Success)
                    {
-                      // var newID = result4.Data;
-                       //ViewModel.EditingProduct().ProductID(newID);
-                       //ViewModel.ProductList.Add(ViewModel.EditingProduct());
                        ViewModel.ProductList.Set(result4.Data);
                        ViewModel.EditingProduct.Clear();
                        Singular.AddMessage(3, 'Edited', 'Product has been saved successfully.').Fade(2000);
                        ViewModel.CallServerMethod('UpdateInventoryItem', { Product: jsonproduct, ShowLoadingBar: true }, function (result3) {
                            if (result3.Success) {
-                               //I think this needs to be added to a table that is in the database actually. ex InventoryList
                                ViewModel.EditInventoryList.Set(result3.Data);
-
                            }
-
                        });
 
                    }
                });
-
-              
           }
         
             });         
         }
 
-        //var SaveEditProduct = function ()
-        //{
-        //    Singular.Validation.IfValid(ViewModel.EditingProduct(), function () {
-        //        var jsonproduct = ViewModel.EditingProduct.Serialise();
-
-
-        //        ViewModel.CallServerMethod('SaveProduct', { Product: jsonproduct, ShowLoadingBar: true }, function (result) {
-        //            if (result.Success) {
-                        
-        //                var newID = result.Data;
-        //                ViewModel.EditingProduct().ProductID(newID);
-        //                ViewModel.ProductList.Add(ViewModel.EditingProduct());
-        //                ViewModel.EditingProduct.Clear();
-        //                Singular.AddMessage(3, 'Edited successfully', 'Product has been saved successfully.').Fade(2000);
-        //            }
-        //            });
-
-        //}
 
         var CancelEdit = function () {
             ViewModel.EditingProduct.Clear();
@@ -323,7 +290,6 @@
 
                 ViewModel.CallServerMethod('SaveInventoryItem', { item: jsonitem, ShowLoadingBar: true }, function (result) {
                     if (result.Success) {
-                        // ViewModel.ProductList().Refresh();
                         Singular.AddMessage(3, 'Saved', 'Product has been saved successfully.').Fade(2000);
                         ViewModel.EditInventoryItem.Clear();
                         ViewModel.EditInventoryList.Set(result.Data);

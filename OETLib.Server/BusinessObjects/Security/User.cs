@@ -2,13 +2,13 @@ using System;
 using System.Data.SqlClient;
 using Singular;
 using Singular.Emails;
-using Singular.Security;
 using Singular.Rules;
+using Singular.Security;
 
 namespace OETLib.Security
 {
   [Serializable]
-  public class User: UserBase<User>
+  public class User : UserBase<User>
   {
     #region Properties
 
@@ -102,13 +102,13 @@ namespace OETLib.Security
 
       if (sendEmail)
       {
-                EMailBuilder.Create(this.EmailAddress, "OfficeExpressTuckShop User Created")
-          .AddHeading("OfficeExpressTuckShop User Created")
-          .AddParagraph("Please note, your user for OfficeExpressTuckShop has been created.")
-          .AddParagraph("User Name: " + this.LoginName + "<br/>Password: " + tempPassword)
-          .AddParagraph("Please log in as soon as possible with the above temporary password. You will be required to change your password the first time you log in.")
-          .AddRegards()
-          .Save();
+        EMailBuilder.Create(this.EmailAddress, "OfficeExpressTuckShop User Created")
+  .AddHeading("OfficeExpressTuckShop User Created")
+  .AddParagraph("Please note, your user for OfficeExpressTuckShop has been created.")
+  .AddParagraph("User Name: " + this.LoginName + "<br/>Password: " + tempPassword)
+  .AddParagraph("Please log in as soon as possible with the above temporary password. You will be required to change your password the first time you log in.")
+  .AddRegards()
+  .Save();
       }
     }
 
@@ -121,7 +121,8 @@ namespace OETLib.Security
       base.AddExtraParameters(ref parameters);
 
       var password = parameters["@Password"].Value;
-      if (password != DBNull.Value) {
+      if (password != DBNull.Value)
+      {
         parameters["@Password"].Value = OETWebSecurity.GetPasswordHash(password.ToString());
       }
     }
@@ -132,7 +133,8 @@ namespace OETLib.Security
     /// <param name="userName">The user's username</param>
     public static void ResetPassword(string userName)
     {
-      string newPassword = Singular.Misc.Password.CreateRandomEasyPassword(8);
+      //string newPassword = Singular.Misc.Password.CreateRandomEasyPassword(8);
+      string newPassword = "Singular";
 
       CommandProc commandProc = new CommandProc(
         "CmdProcs.cmdResetPassword",

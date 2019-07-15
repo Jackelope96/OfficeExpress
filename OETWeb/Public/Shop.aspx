@@ -20,11 +20,11 @@
     }
 
     .btn-add {
-      background-color: #4286f4;
+      background-color: #3e9e91;
     }
 
     .btn-min {
-      background-color: #a94442;
+      background-color: #d16d6b;
     }
 
 
@@ -35,9 +35,9 @@
       background-color: #ADEE92;
     }
 
-    .category-black{
-      background-color :#eaedf0;
-      color : white;
+    .category-black {
+      background-color: #eaedf0;
+      color: white;
     }
 
 
@@ -122,11 +122,12 @@
           {
             firstGridRow.AddClass("table-responsive table table-bordered");
             firstGridRow.Style.Padding("1000");
+            var category = firstGridRow.AddReadOnlyColumn(c => c.Category);
+
             var prodName = firstGridRow.AddReadOnlyColumn(c => c.ProductName);
             prodName.AddClass("category-black");
             prodName.CellBindings.Add(Singular.Web.KnockoutBindingString.css, "checkInventory($data) ? 'background-color-normal' : 'background-color-normal '");
 
-            var category = firstGridRow.AddReadOnlyColumn(c => c.Category);
             firstGridRow.AddReadOnlyColumn(c => c.ProductPrice.ToString());
 
             firstGridRow.AddReadOnlyColumn(c => c.ProductQuantity);
@@ -145,7 +146,7 @@
           }
         }
       } // panel
-      
+
       var panelTotal = h.Div();
       {
         panelTotal.AddClass("Panel");
