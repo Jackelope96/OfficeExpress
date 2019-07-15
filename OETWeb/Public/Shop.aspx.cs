@@ -168,7 +168,6 @@ namespace OETWeb.Public
 
             //Save newly created OrderDetail
             var saveToOrderDetail = orderDetail.TrySave(typeof(OETLib.BusinessObjects.Model.OrderDetailList));
-
             // Get the productId to be able to update the correct inventory
             //var Inventory_product = new OETLib.BusinessObjects.Model.Inventory();
             var Inventory_product = OETLib.BusinessObjects.Model.InventoryList.GetInventoryList().LastOrDefault(d => d.ProductID == product.ProductID);
@@ -181,6 +180,7 @@ namespace OETWeb.Public
             Inventory_record.CurrentInventoryQuantity = Inventory_product.CurrentInventoryQuantity - product.ProductQuantity;
             Inventory_record.InventoryItemCost = Inventory_product.InventoryItemCost;
             Inventory_record.InventoryTypeID = 2;
+            Inventory_record.OrderID = newOrder.OrderID;
             //Try and safe the new inventory record
             Inventory_record.TrySave(typeof(OETLib.BusinessObjects.Model.InventoryList));
 
