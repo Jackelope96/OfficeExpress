@@ -94,12 +94,13 @@ namespace OETLib.BusinessObjects.Model
       get { return GetProperty(CreatedDateProperty); }
     }
 
-    public static PropertyInfo<int?> OrderIDProperty = RegisterProperty<int?>(c => c.OrderID, "OrderID", null);
+    public static PropertyInfo<int?> OrderIDProperty = RegisterProperty<int?>(c => c.OrderID, "OrderID",(int?) null);
     /// <summary>
     /// Gets and sets the Product value
     /// </summary>
-    [Display(Name = "OrderID", Description = ""),
-    Required(ErrorMessage = "OrderID required")]
+    [Display(Name = "OrderID", Description = "")]
+
+
     public int? OrderID
     {
       get { return GetProperty(OrderIDProperty); }
@@ -201,7 +202,7 @@ namespace OETLib.BusinessObjects.Model
       cm.Parameters.AddWithValue("@CurrentInventoryQuantity", Singular.Misc.NothingDBNull(GetProperty(CurrentInventoryQuantityProperty)));
       cm.Parameters.AddWithValue("@InventoryItemCost", Singular.Misc.NothingDBNull(GetProperty(InventoryItemCostProperty)));
       cm.Parameters.AddWithValue("@InventoryTypeID", Singular.Misc.NothingDBNull(GetProperty(InventoryTypeIDProperty)));
-      cm.Parameters.AddWithValue("@OrderID", GetProperty(OrderIDProperty));
+      cm.Parameters.AddWithValue("@OrderID", Singular.Misc.NothingDBNull(GetProperty(OrderIDProperty)));
       return (scm) =>
       {
         // Post Save
