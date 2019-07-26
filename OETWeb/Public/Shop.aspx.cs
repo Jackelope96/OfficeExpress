@@ -49,8 +49,6 @@ namespace OETWeb.Public
     protected override void Setup()
     {
 
-      //Actually get stuff from the database
-
       base.Setup();
       var userid = Singular.Settings.CurrentUserID;
       this.MyCartList = OETLib.BusinessObjects.Model.myCartList.GetmyCartList(userid);
@@ -58,13 +56,9 @@ namespace OETWeb.Public
       this.OrderList = OETLib.BusinessObjects.Model.OrderList.GetOrderList();
       this.CategoryList = OETLib.BusinessObjects.Model.CategoryList.GetCategoryList();
       this.OrderDetailList = OETLib.BusinessObjects.Model.OrderDetailList.GetOrderDetailList();
-      // MyCartList = OETLib.BusinessObjects.Model.myCartList.GetmyCartList();                    
       this.InventoryList = OETLib.BusinessObjects.Model.EditInventoryList.GetEditInventoryList();
       this.OnDemandList = OETLib.BusinessObjects.Model.ProductList.GetOnDemandProducts(13);
 
-
-
-      //Add this to the order button as well
       foreach (OETLib.BusinessObjects.Model.myCart item in MyCartList)
       {
         totalMonthPrice = totalMonthPrice + (item.ProductQuantity * item.ProductPrice);
@@ -81,7 +75,7 @@ namespace OETWeb.Public
       Result webREs = new Result(false);
       try
       {
-        //Create the order
+        // Create the order
         var order = new OETLib.BusinessObjects.Model.Order();
         OrderProduct = OETLib.BusinessObjects.Model.ProductList.GetProductList().FirstOrDefault(d => d.ProductID == product.ProductID);
 
@@ -96,24 +90,22 @@ namespace OETWeb.Public
         order.ProcessStatusID = 1;
         order.RequiredDate = requireddate;
 
-        //Save the order
+        // Save the order
         var savedToOrder = order.TrySave(typeof(OETLib.BusinessObjects.Model.OrderList));
 
 
-        //Return the just saved OrderID
+        // Return the just saved OrderID
         var newOrder = new OETLib.BusinessObjects.Model.Order();
         newOrder = GetOrder(Singular.Settings.CurrentUserID);
 
 
-        //Create orderDetail
+        // Create orderDetail
         var orderDetail = new OETLib.BusinessObjects.Model.OrderDetail();
         orderDetail.OrderID = newOrder.OrderID;
         orderDetail.ProductID = OrderProduct.ProductID;
         orderDetail.ProductQuantity = product.ProductQuantity;
         orderDetail.UnitPrice = product.ProductPrice;
-        //Save newly created OrderDetail
-
-
+        // Save newly created OrderDetail
 
         webREs.Success = true;
         webREs.Data = orderDetail;
@@ -128,10 +120,7 @@ namespace OETWeb.Public
     [WebCallable(Roles = new string[] { "Customer.Access" })]
     public static OETLib.BusinessObjects.Model.Order GetOrder(int userid)
     {
-
       return OETLib.BusinessObjects.Model.OrderList.GetOrderList().LastOrDefault(d => d.UserID == userid);
-
-
     }
 
     [WebCallable(Roles = new string[] { "Customer.Access" })]
@@ -168,11 +157,10 @@ namespace OETWeb.Public
 
             //Save newly created OrderDetail
             var saveToOrderDetail = orderDetail.TrySave(typeof(OETLib.BusinessObjects.Model.OrderDetailList));
+
             // Get the productId to be able to update the correct inventory
-            //var Inventory_product = new OETLib.BusinessObjects.Model.Inventory();
             var Inventory_product = OETLib.BusinessObjects.Model.InventoryList.GetInventoryList().LastOrDefault(d => d.ProductID == product.ProductID);
             var Inventory_record = new OETLib.BusinessObjects.Model.Inventory();
-
 
             //Set inventory elements
             Inventory_record.ProductID = product.ProductID;
@@ -185,8 +173,6 @@ namespace OETWeb.Public
             Inventory_record.TrySave(typeof(OETLib.BusinessObjects.Model.InventoryList));
 
             OETLib.BusinessObjects.Model.myCartList mycartlist = OETLib.BusinessObjects.Model.myCartList.GetmyCartList(Singular.Settings.CurrentUserID);
-
-
           }
 
         }
@@ -208,7 +194,6 @@ namespace OETWeb.Public
       try
       {
         OETLib.BusinessObjects.Model.ProductList productlist = OETLib.BusinessObjects.Model.ProductList.GetProductList();
-        // OETLib.BusinessObjects.Model.InventoryList inventorylist = OETLib.BusinessObjects.Model.InventoryList.GetInventoryList();
         webRes.Data = productlist;
         webRes.Success = true;
       }
@@ -237,7 +222,6 @@ namespace OETWeb.Public
     }
 
 
-
     [WebCallable(Roles = new string[] { "Customer.Access" })]
 
     public Result GetCart()
@@ -249,17 +233,9 @@ namespace OETWeb.Public
         var userid = Singular.Settings.CurrentUserID;
         var currentDate = new DateTime();
         currentDate = DateTime.Now;
-
-
         OETLib.BusinessObjects.Model.myCartList mycartlist = OETLib.BusinessObjects.Model.myCartList.GetmyCartList(userid);
-
-
-        // webRes.Data = OETLib.BusinessObjects.Model.myCartList.GetmyCartList().LastOrDefault(d => d.UserID == userid);
         webRes.Data = mycartlist;
-        //webRes.Data = MyCartList.LastOrDefault(d => d.UserID == userid);
-        //           
         webRes.Success = true;
-
       }
       catch
       {
@@ -276,30 +252,32 @@ namespace OETWeb.Public
       Result webRes = new Result(false);
       try
       {
-        //Delete Order from OrderDetail table
+        // Delete Order from OrderDetail table
         OETLib.BusinessObjects.Model.OrderDetailList orderdetailList = OETLib.BusinessObjects.Model.OrderDetailList.GetOrderDetailList();
         var OrderDetailToDelete = OETLib.BusinessObjects.Model.OrderDetailList.GetOrderDetailList().LastOrDefault(d => d.OrderID == order.OrderID);
         orderdetailList.Remove(OrderDetailToDelete);
         orderdetailList.Save();
 
-        //Delete canceled order from Order table
+        // Delete canceled order from Order table
         OETLib.BusinessObjects.Model.OrderList orderlist = OETLib.BusinessObjects.Model.OrderList.GetOrderList();
         var OrderToDelete = OETLib.BusinessObjects.Model.OrderList.GetOrderList().LastOrDefault(d => d.OrderID == order.OrderID);
-        orderlist.Remove(OrderToDelete);
-        orderlist.Save();
+        //orderlist.Remove(OrderToDelete);
+        OrderToDelete.ProcessStatusID = 3;
+        OrderToDelete.TrySave(typeof(OETLib.BusinessObjects.Model.OrderList));
+        //orderlist.Save();
 
-        //Update the inventory stock levels. Stock needs to be added back to the inventory amounts
-
-        //Get the latest inventory item to update in inventory
+        // Update the inventory stock levels. Stock needs to be added back to the inventory amounts
+        // Get the latest inventory item to update in inventory
         var inventoryToUpdate = OETLib.BusinessObjects.Model.InventoryList.GetInventoryList().LastOrDefault(d => d.ProductID == order.ProductID);
 
-        //new inventory record is created with the updated values
+        // new inventory record is created with the updated values
         var inventoryToCancel = new OETLib.BusinessObjects.Model.Inventory();
         inventoryToCancel.ProductID = order.ProductID;
         inventoryToCancel.InventoryQuantity = order.ProductQuantity;
         inventoryToCancel.CurrentInventoryQuantity = inventoryToUpdate.CurrentInventoryQuantity + order.ProductQuantity;
         inventoryToCancel.InventoryItemCost = inventoryToUpdate.InventoryItemCost;
         inventoryToCancel.InventoryTypeID = 4;
+        inventoryToCancel.OrderID = order.OrderID;
 
         inventoryToCancel.TrySave(typeof(OETLib.BusinessObjects.Model.InventoryList));
 

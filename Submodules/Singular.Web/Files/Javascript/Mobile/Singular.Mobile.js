@@ -86,7 +86,7 @@ var AppLoader = (function () {
 
     var Resource;
 
-    if (typeof (ResourceFileName) == 'string') {
+    if (typeof (ResourceFileName) === 'string') {
       // check if we already have this template
       var FindKey = Type + '_' + ResourceFileName;
       Resource = _Resources.Find('FindKey', FindKey);
@@ -108,8 +108,8 @@ var AppLoader = (function () {
     // if the app is ready, then load the Resource now
     if (self.Ready) {
 
-      LogEvent('Loading ' + (Type == _ResourceType.View ? 'View: ' : 'Model: ') + Resource.FileName);
-      if (Type == _ResourceType.View) {
+      LogEvent('Loading ' + (Type === _ResourceType.View ? 'View: ' : 'Model: ') + Resource.FileName);
+      if (Type === _ResourceType.View) {
         _LoadView(Resource);
       } else {
         _LoadModel(Resource);
@@ -139,7 +139,7 @@ var AppLoader = (function () {
           alert('Error loading template file: ' + FullPath + ': ' + e);
         }
 
-        if (_ResourcesToLoad == 0) {
+        if (_ResourcesToLoad === 0) {
           _OnAllResourcesLoaded();
         }
 
@@ -162,7 +162,7 @@ var AppLoader = (function () {
 
       Model.IsLoaded = true;
       _ResourcesToLoad -= 1;
-      if (_ResourcesToLoad == 0) {
+      if (_ResourcesToLoad === 0) {
         _OnAllResourcesLoaded();
       }
 
@@ -433,7 +433,7 @@ var Application = (function () {
     }
     self.CurrentModule().ViewModel.OnNavigateTo();
 
-    if (Singular.Validation.ValidationMode == 2) {
+    if (Singular.Validation.ValidationMode === 2) {
       Singular.Validation.CheckRules(self.CurrentModule().ViewModel);
     }
 
@@ -445,7 +445,7 @@ var Application = (function () {
       self.CurrentModule().ViewModel.GoBack();
     } else {
       navigator.notification.confirm('Are you sure you want to exit?', function (arg) {
-        if (parseInt(arg) == 2) {
+        if (parseInt(arg) === 2) {
           navigator.app.exitApp();
         }
       }, 'Exit', 'No,Yes')
@@ -516,7 +516,7 @@ Singular.Security = (function () {
 
   self.IsAuthenticated = ko.computed(function () {
     CheckExpiry();
-    return CurrentUser() != null;
+    return CurrentUser() !== null;
   });
 
   self.Identity = ko.computed(function () {
@@ -561,7 +561,7 @@ Singular.Security = (function () {
         if (CompleteCallback) CompleteCallback();
 
         //Redirent if required.
-        if (CurrentUser.peek() != null) {
+        if (CurrentUser.peek() !== null) {
           Application.CheckRedirect(true);
         }
 

@@ -55,6 +55,8 @@
     <Compile Include="BusinessObjects\Model\EditInventoryList.cs" />
     <Compile Include="BusinessObjects\Model\Inventory.cs" />
     <Compile Include="BusinessObjects\Model\InventoryList.cs" />
+    <Compile Include="BusinessObjects\Model\Invoice.cs" />
+    <Compile Include="BusinessObjects\Model\InvoiceList.cs" />
     <Compile Include="BusinessObjects\Model\myCart.cs" />
     <Compile Include="BusinessObjects\Model\myCartList.cs" />
     <Compile Include="BusinessObjects\Model\Order.cs" />

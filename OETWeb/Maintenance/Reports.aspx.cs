@@ -29,7 +29,6 @@ namespace OETWeb.Maintenance
 
     protected override void Setup()
     {
-      //Actually get stuff from the database
       base.Setup();
       userList = OETLib.BusinessObjects.Model.ROUserList.GetROUserList();
     }
@@ -55,7 +54,6 @@ namespace OETWeb.Maintenance
         {
           userCartList = OETLib.BusinessObjects.Model.myCartList.GetmyCartList(client.UserID);
           var ws = package.Workbook.Worksheets.Copy("Template", client.FirstName.Substring(0, 1) + " " + client.LastName + " " + client.UserID);
-          //ExportToExcel(userCart, ws, client);
           ExportToExcel(userCartList, ws, client);
         }
         package.SaveAs(new FileInfo(@"C:\Users\JVanzyl\Documents\Result_" + $"{DateTime.Now:dddd, d MMM, yyyy}" + ".xlsx"));
@@ -87,6 +85,34 @@ namespace OETWeb.Maintenance
       return clientList;
     }
 
+    public string GenerateInvoice(int UserId, decimal invoiceTotal, int deductId)
+    {
+      try
+      {
+        // Create the new invoice in the database
+        var newInvoice = new OETLib.BusinessObjects.Model.Invoice();
+        newInvoice.UserID = UserId;
+        newInvoice.InvoiceDate = DateTime.Now;
+        newInvoice.InvoiceTotal = invoiceTotal;
+        if (deductId == 1)
+          newInvoice.Notes = "Salary";
+        else newInvoice.Notes = "Cash";
+
+        var SavedInvoice = newInvoice.TrySave(typeof(OETLib.BusinessObjects.Model.InvoiceList));
+
+        string invoiceNumber = (((OETLib.BusinessObjects.Model.Invoice)SavedInvoice.SavedObject).InvoiceID).ToString();
+
+        return invoiceNumber;
+      }
+      catch
+      {
+        return "404";
+      }
+
+
+
+    }
+
     public void ExportToExcel(OETLib.BusinessObjects.Model.myCartList userCart, ExcelWorksheet ws, OETLib.BusinessObjects.Model.ROUser user)
     {
       try
@@ -103,14 +129,17 @@ namespace OETWeb.Maintenance
           detail.Add(entry);
         }
 
-        // Bill to :
+
+        string invoiceNumber = GenerateInvoice(user.UserID, invoiceTotal, user.DeductID);
+
+        // Bill to 
         ws.Cells[12, 3].Value = (user.FirstName).Substring(0, 1) + user.LastName;
 
         // Email
         ws.Cells[14, 3].Value = user.EmailAddress;
 
         // Invoice Number
-        ws.Cells[12, 7].Value = "1234";
+        ws.Cells[12, 7].Value = invoiceNumber;
 
         // Invoice Date
         ws.Cells[14, 7].Value = DateTime.Now;
