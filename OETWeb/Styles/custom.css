@@ -97,7 +97,7 @@
 
 .header {
 	color: #fff;
-	background: #7ebad3;
+	background: #3e9e91;
 	border-bottom: #fff 2px solid;
 	height: 75px;
 	padding: 0px;
@@ -212,7 +212,7 @@
 				.context-menu-ls .Selectable div a:hover {
 					text-decoration: none;
 					color: #fff;
-					background-color: #7ebad3;
+					background-color: #3e9e91;
 					padding: 10px 15px;
 					display: block;
 				}
@@ -249,9 +249,9 @@
 
 /*********buttons start********/
 .custom_BbtnMd {
-	background-color: #7ebad3;
+	background-color: #3e9e91;
 	color: #fff;
-	border: solid 1px #7ebad3;
+	border: solid 1px #3e9e91;
 	text-transform: uppercase;
 	position: relative;
 	max-width: 100%;
@@ -265,16 +265,16 @@
 
 	.custom_BbtnMd:hover {
 		background-color: #fff;
-		border-color: #7ebad3;
+		border-color: #3e9e91;
 		text-decoration: none;
-		color: #7ebad3;
+		color: #3e9e91;
 		cursor: pointer;
 	}
 
 	.custom_BbtnMd:focus.selected {
-		background-color: #7ebad3;
+		background-color: #3e9e91;
 		color: #fff;
-		border: solid 1px #7ebad3;
+		border: solid 1px #3e9e91;
 	}
 
 
@@ -627,8 +627,8 @@ button.close {
 
 .custom_BbtnMd:focus {
 	background: transparent;
-	color: #7ebad3;
-	border: solid 1px #7ebad3;
+	color: #3e9e91;
+	border: solid 1px #3e9e91;
 }
 
 btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
@@ -780,22 +780,22 @@ button.btn-primary.fa.fa-edit.btn {
 	.btn-group-sm > .btn, .btn-sm:hover {
 		min-width: 150px;
 		width: auto;
-		color: #7ebad3;
+		color: #3e9e91;
 		background: #fff;
-		border: 1px solid #7ebad3;
+		border: 1px solid #3e9e91;
 	}
 
 	.btn-group-sm > .btn, .btn-sm:focus {
-		color: #7ebad3;
+		color: #3e9e91;
 		background: #fff;
-		border: 1px solid #7ebad3;
+		border: 1px solid #3e9e91;
 		min-width: 150px;
 		width: auto;
 	}
 
 .btn-success {
-	background-color: #7ebad3;
-	border: 1px solid #7ebad3;
+	background-color: #3e9e91;
+	border: 1px solid #3e9e91;
 	color: #fff;
 	margin-right: 5px;
 	min-width: 150px;
@@ -803,8 +803,8 @@ button.btn-primary.fa.fa-edit.btn {
 
 	.btn-success:hover {
 		background-color: #fff;
-		border: 1px solid #7ebad3;
-		color: #7ebad3;
+		border: 1px solid #3e9e91;
+		color: #3e9e91;
 		margin-right: 5px;
 	}
 
@@ -819,8 +819,8 @@ button.btn-primary.fa.fa-edit.btn {
 	font-size: 14px;
 	margin: 0px 0 !important;
 	color: #fff;
-	background: #7ebad3;
-	border: 1px solid #7ebad3;
+	background: #3e9e91;
+	border: 1px solid #3e9e91;
 	margin-bottom: 15px !important;
 	height: 30px;
 }
@@ -829,9 +829,9 @@ button.btn-primary.fa.fa-edit.btn {
 		padding: 0px;
 		font-size: 14px;
 		margin: 0px 0 !important;
-		color: #7ebad3;
+		color: #3e9e91;
 		background: #fff;
-		border: 1px solid #7ebad3;
+		border: 1px solid #3e9e91;
 		margin-bottom: 15px !important;
 	}
 

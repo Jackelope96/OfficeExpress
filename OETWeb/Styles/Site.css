@@ -500,11 +500,11 @@ input.ComboBox {
 .DivToolbar {
 	position: relative;
 	background-color: transparent;
-	border-bottom: 2px solid #7ebad3;
+	border-bottom: 2px solid #3e9e91;
 	padding: 15px;
 	margin: 10px 0 10px 0;
 	min-height: 50px;
-	color: #7ebad3;
+	color: #3e9e91;
 }
 
 	.DivToolbar h1, .DivToolbar h2 {
@@ -634,8 +634,8 @@ input.ComboBox {
 /* #region JQuery overrides */
 
 .ui-widget-header {
-	background-color: #7ebad3;
-	background: linear-gradient(180deg, #7ebad3, #3D434F);
+	background-color: #3e9e91;
+	background: linear-gradient(180deg, #3e9e91, #3D434F);
 	font-weight: 600;
 	border: none;
 }
@@ -698,6 +698,6 @@ input.ComboBox {
 /* #endregion */
 /*Kels Main New CSS Styles*/
 button.btn-primary.btn-sm.btn {
-	    margin-bottom: 5px;
-    margin-left: 5px;
+			margin-bottom: 5px;
+		margin-left: 5px;
 }

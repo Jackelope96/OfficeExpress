@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Web;
 using OfficeOpenXml;
 using Singular.Web;
 
@@ -29,7 +31,6 @@ namespace OETWeb.Maintenance
 
     protected override void Setup()
     {
-      //Actually get stuff from the database
       base.Setup();
       userList = OETLib.BusinessObjects.Model.ROUserList.GetROUserList();
     }
@@ -48,19 +49,36 @@ namespace OETWeb.Maintenance
         var activeClients = activeCarts.Select(x => x.UserID).ToList();
         clientList = retrieveUserList(activeClients);
 
-        var file = new FileInfo(@"C:\Users\JVanzyl\Documents\BES\Invoice_template.xlsx");
+        var file = new FileInfo(System.Web.HttpContext.Current.Server.MapPath("~/Data/Invoice_template.xlsx"));
         ExcelPackage package = new ExcelPackage(file);
-
         foreach (var client in clientList)
         {
           userCartList = OETLib.BusinessObjects.Model.myCartList.GetmyCartList(client.UserID);
+
           var ws = package.Workbook.Worksheets.Copy("Template", client.FirstName.Substring(0, 1) + " " + client.LastName + " " + client.UserID);
-          //ExportToExcel(userCart, ws, client);
           ExportToExcel(userCartList, ws, client);
         }
-        package.SaveAs(new FileInfo(@"C:\Users\JVanzyl\Documents\Result_" + $"{DateTime.Now:dddd, d MMM, yyyy}" + ".xlsx"));
-        webRes.Success = true;
+        // Add code to download the file
 
+        //byte[] results = package.GetAsByteArray();
+        var fileName = "Result_" + $"{DateTime.Now:dddd, d MMM, yyyy}" + ".xlsx";
+
+
+        //Stream str = package.Stream;
+        // byte[] b = System.IO.File.ReadAllBytes(f.ToString());
+        //using (BinaryReader br = new BinaryReader(str))
+        //{
+        //  b = br.ReadBytes((int)str.Length);
+        //  
+        //}
+        //SendFile(fileName, results, true);
+
+
+        // DownloadFile(package,fileName);
+
+        package.SaveAs(new FileInfo(@"C:\Users\JVanzyl\Documents\" + fileName));
+        //Result_" + $"{DateTime.Now:dddd, d MMM, yyyy}" + ".xlsx"));
+        webRes.Success = true;
       }
       catch (Exception e)
       {
@@ -87,6 +105,28 @@ namespace OETWeb.Maintenance
       return clientList;
     }
 
+    public string GenerateInvoice(int UserId, decimal invoiceTotal, int deductId)
+    {
+      try
+      {
+        // Create the new invoice in the database
+        var newInvoice = new OETLib.BusinessObjects.Model.Invoice();
+        newInvoice.UserID = UserId;
+        newInvoice.InvoiceDate = DateTime.Now;
+        newInvoice.InvoiceTotal = invoiceTotal;
+        if (deductId == 1)
+          newInvoice.Notes = "Salary";
+        else newInvoice.Notes = "Cash";
+        var SavedInvoice = newInvoice.TrySave(typeof(OETLib.BusinessObjects.Model.InvoiceList));
+        string invoiceNumber = (((OETLib.BusinessObjects.Model.Invoice)SavedInvoice.SavedObject).InvoiceID).ToString();
+        return invoiceNumber;
+      }
+      catch
+      {
+        return "404";
+      }
+    }
+
     public void ExportToExcel(OETLib.BusinessObjects.Model.myCartList userCart, ExcelWorksheet ws, OETLib.BusinessObjects.Model.ROUser user)
     {
       try
@@ -103,14 +143,16 @@ namespace OETWeb.Maintenance
           detail.Add(entry);
         }
 
-        // Bill to :
+        string invoiceNumber = GenerateInvoice(user.UserID, invoiceTotal, user.DeductID);
+
+        // Bill to 
         ws.Cells[12, 3].Value = (user.FirstName).Substring(0, 1) + user.LastName;
 
         // Email
         ws.Cells[14, 3].Value = user.EmailAddress;
 
         // Invoice Number
-        ws.Cells[12, 7].Value = "1234";
+        ws.Cells[12, 7].Value = invoiceNumber;
 
         // Invoice Date
         ws.Cells[14, 7].Value = DateTime.Now;
@@ -124,14 +166,40 @@ namespace OETWeb.Maintenance
         ws.Cells[21 + itemNumber + 1, 5].Style.Font.Bold = true;
         ws.Cells[21 + itemNumber + 1, 6].Value = "R" + invoiceTotal;
 
+        // Print deductable from salary 
+        if (user.DeductID == 1)
+          ws.Cells[17, 6].Value = "Deduct from salary";
+        else { ws.Cells[17, 6].Value = "Cash"; };
       }
       catch (Exception e)
       {
         // Do nothing
+
       }
 
     }
 
+    public void DownloadFile(ExcelPackage file, string fileName)
+    {
 
+
+      try
+      {
+        HttpResponse Response = System.Web.HttpContext.Current.Response;
+        byte[] Content = file.GetAsByteArray();
+        Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+        Response.AddHeader("content-length", Content.Length.ToString());
+        Response.AddHeader("content-disposition", "attachment; filename=\"ExcelDemo.xlsx\"");
+        Response.Buffer = true;
+        Response.OutputStream.Write(Content, 0, Content.Length);
+        Response.Flush();
+        Response.End();
+        HttpContext.Current.ApplicationInstance.CompleteRequest();
+      }
+      catch (ThreadAbortException)
+      {
+        return;
+      }
+    }
   }
 }

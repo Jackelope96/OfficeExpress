@@ -104,7 +104,7 @@
 	margin: 0;
 	padding: 0;
 	border-right: 3px solid #fff;
-	background: #7ebad3;
+	background: #3e9e91;
 	height: 100%;
 	border-radius: 0px;
 }
@@ -137,7 +137,7 @@
 	color: #fff;
 	display: block;
 	text-decoration: none;
-	background: #7ebad3;
+	background: #3e9e91;
 	font-size: 16px;
 }
 
@@ -182,7 +182,6 @@
 			border: #ddd 1px solid;
 			text-decoration: none;
 		}
-
 }
 
 .sidebar-nav a:active,

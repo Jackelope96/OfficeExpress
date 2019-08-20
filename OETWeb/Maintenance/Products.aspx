@@ -8,22 +8,22 @@
      <style type="text/css">
        .background-colour-highlightGreen {
            
-           background-color: #ADEE92;
+           
 
        }
 
        .background-colour-highlightRed{
-           background-color :#EEA792;
+           background-color :#f2dede;
        }
 
 
        .btn-add{
-           background-color: #4286f4;
+           background-color: #3e9e91;
 
        }
 
         .btn-min {
-            background-color: #ff6666;
+            background-color: #d16d6b;
         }
         .align{
             text-align : left;
@@ -49,16 +49,13 @@
         h.MessageHolder();
         var btnNewProduct =  h.Button( Singular.Web.DefinedButtonType.Save , "New Product");
         btnNewProduct.AddBinding(Singular.Web.KnockoutBindingString.click, "EditProduct()");
-        var excelBtn = h.Button(Singular.Web.DefinedButtonType.Export, "Export");
-       excelBtn.AddBinding(Singular.Web.KnockoutBindingString.click, "Export()");
+        
 
         var panel = h.Div();
         {
             panel.AddClass("Panel");
             panel.Style.Margin("10px");
-
-            //panel.Helpers.Button(Singular.Web.DefinedButtonType.Save , "Save");
-
+      
             var grid = panel.Helpers.TableFor<OETLib.BusinessObjects.Model.Product>(c => c.ProductList,  false, false);
             {
                 grid.AddClass("table-responsive table table-bordered");
@@ -102,10 +99,6 @@
         {
             panelInventory.AddClass("Panel");
             panelInventory.Style.Margin("10px");
-            //panelInventory.Style.Width = "50";
-
-            //panel.Helpers.Button(Singular.Web.DefinedButtonType.Save , "Save");
-
             var grid = panelInventory.Helpers.TableFor<OETLib.BusinessObjects.Model.EditInventory>(c => c.EditInventoryList,  false, false);
             {
                 grid.AddClass("table-responsive table table-bordered");
@@ -131,7 +124,6 @@
 
                     currentInv.CellBindings.Add(Singular.Web.KnockoutBindingString.css, "checInventory($data.CurrentInventoryQuantity()) ? 'background-colour-highlightGreen' : 'background-colour-highlightRed'");
 
-
                 }
             }
         } // panelInventory
@@ -146,44 +138,17 @@
             var dialogContent = dialog.Helpers.With<OETLib.BusinessObjects.Model.Product>(c => c.EditingProduct);
             {
 
-               dialogContent.Helpers.EditorRowFor(c => c.ProductName);//.Editor.AddBinding(Singular.Web.KnockoutBindingString.enable, c => c.IsNew);
+               dialogContent.Helpers.EditorRowFor(c => c.ProductName);
                var r =  dialogContent.Helpers.EditorRowFor(c => c.ProductPrice);
                 dialogContent.Helpers.EditorRowFor(c => c.CategoryID);
                 
                 dialogContent.Helpers.EditorRowFor(c => c.ItemCost);
                 r.AddClass("align");
-                
-
-
-                //dialogContent.Helpers.EditorRowFor(c => c.InventoryQuantity);
             }
 
             dialog.AddConfirmationButtons("Save", "SaveProduct()", "Cancel");
         }
 
-
-        //////Edit Inventory Item
-        //var dialog2 = h.Dialog(
-        //    c => c.EditInventoryProduct != null,
-        //    c => ((c.EditInventoryProduct != null)) ? "New Product" : "Edit Product",
-        //    "CancelEdit");
-        //{
-        //    dialog2.Style.Width = "600";
-
-        //    var dialogContent = dialog2.Helpers.With<OETLib.BusinessObjects.Model.Product>(c => c.EditInventoryProduct);
-        //    {
-
-        //        dialogContent.Helpers.ReadOnlyFor(c => c.ProductName);//.Editor.AddBinding(Singular.Web.KnockoutBindingString.enable, c => c.IsNew);
-        //        dialogContent.Helpers.EditorRowFor(c => c.InventoryQuantity);
-        //        dialogContent.Helpers.EditorRowFor(c => c.CurrentInventoryQuantity);
-        //        dialogContent.Helpers.EditorRowFor(c => c.InventoryCostPrice);
-
-
-
-        //        //dialogContent.Helpers.EditorRowFor(c => c.InventoryQuantity);
-        //    }
-        //    dialog2.AddConfirmationButtons("Save", "SaveItem()", "Cancel");
-        //}
 
         var dialogAdd = h.Dialog(
    c => c.EditInventoryItem != null,
@@ -199,8 +164,6 @@
             dialogAdd.AddConfirmationButtons("Save", "SaveInventoryItem ()", "Cancel");
         }
 
-
-
     } %>
 
     <script type="text/javascript">
@@ -212,18 +175,14 @@
                 ViewModel.IsNewItem = false;
                 var jsonproduct = Product.Serialise();
                  ViewModel.CallServerMethod('GetProduct', { ProductID: Product.ProductID(), ShowLoadingBar: true }, function (result) {
-               // ViewModel.CallServerMethod('GetProduct', { Product: jsonproduct, ShowLoadingBar: true }, function (result) {
                     if (result.Success)
                     {
-                       
                         ViewModel.EditingProduct.Set(result.Data);
-                       // ViewModel.EditingProduct().Refresh();
                     }
                 });
 
             } else {
                 //New
-                //ViewModel.NeedInventory = true;
                 ViewModel.IsNewItem = true;
                 ViewModel.EditingProduct.Set();
                
@@ -246,7 +205,6 @@
                        ViewModel.ProductList.Add(ViewModel.EditingProduct());
                        ViewModel.CallServerMethod('SaveInventoryProduct', { Product: jsonproduct, productid: newID, ShowLoadingBar: true }, function (result2) {
                            if (result2.Success) {
-                               //I think this needs to be added to a table that is in the database actually. ex InventoryList
                                ViewModel.EditInventoryList.Set(result2.Data);
                                ViewModel.EditingProduct.Clear();
                                Singular.AddMessage(3, 'Saved', 'Product has been saved successfully.').Fade(2000);
@@ -262,48 +220,22 @@
                ViewModel.CallServerMethod('UpdateProduct', { Product: jsonproduct, ShowLoadingBar: true }, function (result4) {
                    if (result4.Success)
                    {
-                      // var newID = result4.Data;
-                       //ViewModel.EditingProduct().ProductID(newID);
-                       //ViewModel.ProductList.Add(ViewModel.EditingProduct());
                        ViewModel.ProductList.Set(result4.Data);
                        ViewModel.EditingProduct.Clear();
                        Singular.AddMessage(3, 'Edited', 'Product has been saved successfully.').Fade(2000);
                        ViewModel.CallServerMethod('UpdateInventoryItem', { Product: jsonproduct, ShowLoadingBar: true }, function (result3) {
                            if (result3.Success) {
-                               //I think this needs to be added to a table that is in the database actually. ex InventoryList
                                ViewModel.EditInventoryList.Set(result3.Data);
-
                            }
-
                        });
 
                    }
                });
-
-              
           }
         
             });         
         }
 
-        //var SaveEditProduct = function ()
-        //{
-        //    Singular.Validation.IfValid(ViewModel.EditingProduct(), function () {
-        //        var jsonproduct = ViewModel.EditingProduct.Serialise();
-
-
-        //        ViewModel.CallServerMethod('SaveProduct', { Product: jsonproduct, ShowLoadingBar: true }, function (result) {
-        //            if (result.Success) {
-                        
-        //                var newID = result.Data;
-        //                ViewModel.EditingProduct().ProductID(newID);
-        //                ViewModel.ProductList.Add(ViewModel.EditingProduct());
-        //                ViewModel.EditingProduct.Clear();
-        //                Singular.AddMessage(3, 'Edited successfully', 'Product has been saved successfully.').Fade(2000);
-        //            }
-        //            });
-
-        //}
 
         var CancelEdit = function () {
             ViewModel.EditingProduct.Clear();
@@ -325,20 +257,6 @@
 
             });
         }
-
-        var Export = function ()
-        {
-            ViewModel.CallServerMethod('ExportData', {  ShowLoadingBar: true }, function (result) {
-                if (result.Success) {
-                    Singular.AddMessage(3, 'Export', 'Productlist has been exported successfully.').Fade(2000);
-                } else {
-                    alert(result.ErrorText);
-                }
-            });
-        }
-
-     
-
         var checInventory = function(currentInv)
         {
             if (currentInv < 20)
@@ -372,7 +290,6 @@
 
                 ViewModel.CallServerMethod('SaveInventoryItem', { item: jsonitem, ShowLoadingBar: true }, function (result) {
                     if (result.Success) {
-                        // ViewModel.ProductList().Refresh();
                         Singular.AddMessage(3, 'Saved', 'Product has been saved successfully.').Fade(2000);
                         ViewModel.EditInventoryItem.Clear();
                         ViewModel.EditInventoryList.Set(result.Data);

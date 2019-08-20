@@ -21,7 +21,7 @@ ko.bindingHandlers.click = {
     var binding = ko.utils.unwrapObservable(valueAccessor());
     $(element).on(Singular.ClickEvent, function (e) {
 
-      if (this.nodeName == 'BUTTON') {
+      if (this.nodeName === 'BUTTON') {
         $(document.activeElement).change();
       }
      

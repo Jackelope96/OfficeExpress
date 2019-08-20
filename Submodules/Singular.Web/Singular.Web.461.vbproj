@@ -76,6 +76,9 @@
     <Reference Include="Csla">
       <HintPath>..\Singular.Server\Dlls\Csla.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetZip, Version=1.13.3.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DotNetZip.1.13.3\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="Infragistics4.Documents.Excel.v12.2, Version=12.2.20122.2038, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Singular.Server\Dlls\Infragistics4.Documents.Excel.v12.2.dll</HintPath>
@@ -408,6 +411,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="packages.config" />
     <None Include="Singular.snk" />
   </ItemGroup>
   <ItemGroup>

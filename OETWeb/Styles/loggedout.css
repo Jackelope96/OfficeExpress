@@ -11,7 +11,7 @@
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 	background-color: transparent !important;
 	background-image: none;
-	color: #7ebad3 !important;
+	color: #3e9e91 !important;
 }
 
 .BackgroundContainer {
@@ -41,7 +41,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 legend {
     display: block;
-    color: #7ebad3;
+    color: #3e9e91;
     text-align: center;
 }
 
@@ -67,7 +67,7 @@ i.fa.fa-caret-down {
 
 select, input[type='text'], input[type='password'], input[type='checkbox'], input[type='file'], textarea {
 	box-shadow: none;
-	border: 1px solid #7ebad3;
+	border: 1px solid #3e9e91;
 	padding: 8px;
 	background-color: transparent;
 	font: inherit;
@@ -324,7 +324,7 @@ body .ContainerLoggedOut {
 
 .header {
 	color: #fff;
-	background: #7ebad3;
+	background: #3e9e91;
 	border-bottom: none !important;
 	height: 75px;
 	padding: 0px;
@@ -332,17 +332,17 @@ body .ContainerLoggedOut {
 
 .btn-primary {
 	color: #fff;
-	background-color: #7ebad3;
-	border-color: #7ebad3;
+	background-color: #3e9e91;
+	border-color: #3e9e91;
 	min-width: 150px;
 	text-transform: uppercase;
 	font-size: 13px;
 }
 
 	.btn-primary:hover {
-		color: #7ebad3;
+		color: #3e9e91;
 		background-color: #fff;
-		border-color: #7ebad3;
+		border-color: #3e9e91;
 		min-width: 150px;
 		text-transform: uppercase;
 		font-size: 13px;
@@ -408,7 +408,7 @@ label {
 	max-width: 100%;
 	margin-bottom: 0px;
 	font-weight: 300;
-	color:#7ebad3;
+	color:#3e9e91;
 	font-weight: 500;
 }
 
@@ -441,7 +441,7 @@ input, input[type='text'], input[type=password] {
 }
 .LoginImgSize{
 	    height: 50px;
-    background: #7ebad3;
+    background: #3e9e91;
     padding: 5px;
     /* width: 100%; */
     /* text-align: center; */
