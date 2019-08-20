@@ -10,15 +10,25 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 <% 
-    using (var h = Helpers)
+  using (var h = Helpers)
+  {
+    var toolbar = h.Toolbar();
     {
-        var toolbar = h.Toolbar();
-        {
-            toolbar.Helpers.HTML().Heading2("Reports");
-            var excelBtn = h.Button(Singular.Web.DefinedButtonType.Export, "Export");
-            excelBtn.AddBinding(Singular.Web.KnockoutBindingString.click, "Export()");
-        }
-    }%>
+      toolbar.Helpers.HTML().Heading2("Reports");
+      var excelBtn = h.Button(Singular.Web.DefinedButtonType.Export, "Export");
+      excelBtn.AddBinding(Singular.Web.KnockoutBindingString.click, "Export()");
+      
+
+      
+    }
+
+    var panel = h.Div();
+    {
+      panel.AddClass("Panel");
+      panel.Style.Margin("10px");
+      var powerbi = h.HTMLTag("<iframe width=\"1000\" height=\"800\" src=\"https://app.powerbi.com/view?r=eyJrIjoiNTk2NDY2ODUtMWViYy00NGU5LWFmOTItNmZlMWE1YjhmMzc4IiwidCI6ImM5ODcxYzlkLTdmZTYtNGIxZC1hOTdhLTIyYjE3MmI4NzJlNyIsImMiOjh9\" frameborder=\"0\" allowFullScreen=\"true\"></iframe>");
+    }
+  }%>
 
      <script type="text/javascript">
 
