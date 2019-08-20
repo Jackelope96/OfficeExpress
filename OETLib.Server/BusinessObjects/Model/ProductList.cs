@@ -10,138 +10,152 @@ using System.Data.SqlClient;
 
 namespace OETLib.BusinessObjects.Model
 {
-    [Serializable]
-    public class ProductList
-     : SingularBusinessListBase<ProductList, Product>
+  [Serializable]
+  public class ProductList
+   : SingularBusinessListBase<ProductList, Product>
+  {
+
+
+    #region " Business Methods "
+
+
+
+    public Product GetItem(int ProductID)
     {
-
-       
-        #region " Business Methods "
-
-        
-
-        public Product GetItem(int ProductID)
+      foreach (Product child in this)
+      {
+        if (child.ProductID == ProductID)
         {
-            foreach (Product child in this)
-            {
-                if (child.ProductID == ProductID)
-                {
-                    return child;
-                }
-            }
-            return null;
+          return child;
         }
-
-       
-
-        public override string ToString()
-        {
-            return "Products";
-        }
-
-        public ProductList Refresh()
-        {
-            return GetProductList();
-        }
-
-        #endregion
-
-        #region " Data Access "
-
-        [Serializable]
-        public class Criteria
-          : CriteriaBase<Criteria>
-        {
-            public Criteria()
-            {
-
-            }
-            public bool? NeedStockStatus { get; set; }
-
-            public int ProductID { get; set; }
-           
-          
-        }
-
-        public static ProductList NewProductList()
-        {
-            return new ProductList();
-        }
-
-        public ProductList()
-        {
-            // must have parameter-less constructor
-        }
-
-        public static ProductList GetProductList(bool stockStatus)
-        {
-            return DataPortal.Fetch<ProductList>(new Criteria { NeedStockStatus = stockStatus });
-        }
-
-        public static ProductList GetProductList()
-        {
-            return DataPortal.Fetch<ProductList>(new Criteria()
-            {});
-        }
+      }
+      return null;
+    }
 
 
-        public static ProductList GetProductList(int productId)
-        {
-            return DataPortal.Fetch<ProductList>(new Criteria()
-           {
-                ProductID = productId
-           });
-        }
-        //Editing item
-        public static ProductList GetEditProductList(int productId)
-        {
-            return DataPortal.Fetch<ProductList>(new Criteria()
-            {
-                ProductID = productId
-            });
-        }
 
+    public override string ToString()
+    {
+      return "Products";
+    }
 
-        protected void Fetch(SafeDataReader sdr)
-        {
-            this.RaiseListChangedEvents = false;
-            while (sdr.Read())
-            {
-                this.Add(Product.GetProduct(sdr));
-            }
-            this.RaiseListChangedEvents = true;
-        }
+    public ProductList Refresh()
+    {
+      return GetProductList();
+    }
 
-        protected override void DataPortal_Fetch(Object criteria)
-        {
-            Criteria crit = (Criteria)criteria;
-            using (SqlConnection cn = new SqlConnection(Singular.Settings.ConnectionString))
-            {
-                cn.Open();
-                try
-                {
-                    using (SqlCommand cm = cn.CreateCommand())
-                    {
-                        cm.CommandType = CommandType.StoredProcedure;
-                        if (crit.NeedStockStatus.HasValue)
-                            cm.Parameters.AddWithValue("@stockStatus", crit.NeedStockStatus);
+    #endregion
 
-                        cm.CommandText = "GetProcs.getProductList";
-                        using (SafeDataReader sdr = new SafeDataReader(cm.ExecuteReader()))
-                        {
-                            Fetch(sdr);
-                        }
-                    }
-                }
-                finally
-                {
-                    cn.Close();
-                }
-            }
-        }
+    #region " Data Access "
 
-        #endregion
+    [Serializable]
+    public class Criteria
+      : CriteriaBase<Criteria>
+    {
+      public Criteria()
+      {
+
+      }
+      public bool? NeedStockStatus { get; set; }
+
+      public int ProductID { get; set; }
+      public int? CategoryID { get; set; }
+
 
     }
+
+    public static ProductList NewProductList()
+    {
+      return new ProductList();
+    }
+
+    public ProductList()
+    {
+      // must have parameter-less constructor
+    }
+
+    public static ProductList GetProductList(bool stockStatus)
+    {
+      //return DataPortal.Fetch<ProductList>(new Criteria { NeedStockStatus = stockStatus });
+      return DataPortal.Fetch<ProductList>(new Criteria { NeedStockStatus = stockStatus });
+    }
+
+    public static ProductList GetProductList()
+    {
+      return DataPortal.Fetch<ProductList>(new Criteria()
+      { });
+    }
+
+
+    public static ProductList GetProductList(int productId)
+    {
+      return DataPortal.Fetch<ProductList>(new Criteria()
+      {
+        ProductID = productId
+      });
+    }
+    //Editing item
+    public static ProductList GetEditProductList(int productId)
+    {
+      return DataPortal.Fetch<ProductList>(new Criteria()
+      {
+        ProductID = productId
+      });
+    }
+
+    // Category list
+    public static  ProductList GetOnDemandProducts (int categoryid)
+    {
+      return DataPortal.Fetch<ProductList>(new Criteria()
+      {
+        CategoryID = categoryid
+      });
+    }
+
+
+
+    protected void Fetch(SafeDataReader sdr)
+    {
+      this.RaiseListChangedEvents = false;
+      while (sdr.Read())
+      {
+        this.Add(Product.GetProduct(sdr));
+      }
+      this.RaiseListChangedEvents = true;
+    }
+
+    protected override void DataPortal_Fetch(Object criteria)
+    {
+      Criteria crit = (Criteria)criteria;
+      using (SqlConnection cn = new SqlConnection(Singular.Settings.ConnectionString))
+      {
+        cn.Open();
+        try
+        {
+          using (SqlCommand cm = cn.CreateCommand())
+          {
+            cm.CommandType = CommandType.StoredProcedure;
+            if (crit.NeedStockStatus.HasValue)
+              cm.Parameters.AddWithValue("@stockStatus", crit.NeedStockStatus);
+            if(crit.CategoryID.HasValue)
+              cm.Parameters.AddWithValue("@CategoryID",crit.CategoryID);
+
+            cm.CommandText = "GetProcs.getProductList";
+            using (SafeDataReader sdr = new SafeDataReader(cm.ExecuteReader()))
+            {
+              Fetch(sdr);
+            }
+          }
+        }
+        finally
+        {
+          cn.Close();
+        }
+      }
+    }
+
+    #endregion
+
+  }
 
 }
