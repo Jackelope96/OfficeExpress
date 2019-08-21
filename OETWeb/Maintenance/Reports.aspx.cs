@@ -36,6 +36,7 @@ namespace OETWeb.Maintenance
     }
 
     [WebCallable]
+
     public Result ExportData()
     {
       Result webRes = new Result(false);
@@ -50,6 +51,7 @@ namespace OETWeb.Maintenance
         clientList = retrieveUserList(activeClients);
 
         var file = new FileInfo(System.Web.HttpContext.Current.Server.MapPath("~/Data/Invoice_template.xlsx"));
+        var file2 = new FileInfo(System.Web.HttpContext.Current.Server.MapPath("~/Data/lekker.txt"));
         ExcelPackage package = new ExcelPackage(file);
         foreach (var client in clientList)
         {
@@ -57,9 +59,20 @@ namespace OETWeb.Maintenance
 
           var ws = package.Workbook.Worksheets.Copy("Template", client.FirstName.Substring(0, 1) + " " + client.LastName + " " + client.UserID);
           ExportToExcel(userCartList, ws, client);
+          package.Workbook.Worksheets.Delete("Template");
         }
         // Add code to download the file
 
+      //  SendFile("Test.xlsx", z, true);
+
+        //using (FileStream fs = File.OpenRead(file.ToString()))
+        //{
+        //  byte[] fileContent = File.ReadAllBytes(file);
+        //  byte[] b = new byte[1024];
+        //  fs.Read(b, 0, b.Length);
+        //  SendFile("test", b, true);
+
+        //}
         //byte[] results = package.GetAsByteArray();
         var fileName = "Result_" + $"{DateTime.Now:dddd, d MMM, yyyy}" + ".xlsx";
 
@@ -76,15 +89,20 @@ namespace OETWeb.Maintenance
 
         // DownloadFile(package,fileName);
 
-        package.SaveAs(new FileInfo(@"C:\Users\JVanzyl\Documents\" + fileName));
+        //package.SaveAs(new FileInfo(@"C:\Users\JVanzyl\Documents\" + fileName));
         //Result_" + $"{DateTime.Now:dddd, d MMM, yyyy}" + ".xlsx"));
         webRes.Success = true;
+        webRes.Data = package.GetAsByteArray();
+        //string base64UrlEncodedText = package.GetAsByteArray().ToString().Replace("=", String.Empty).Replace('+', '-').Replace('/', '_');
+        //webRes.Data = base64UrlEncodedText;
+
+        //webRes.Data = package.Stream;
       }
       catch (Exception e)
       {
         webRes.ErrorText = e.Message;
       }
-      return webRes;
+     return webRes;
     }
 
     public List<OETLib.BusinessObjects.Model.ROUser> retrieveUserList(List<int> activeUsers)
@@ -178,6 +196,7 @@ namespace OETWeb.Maintenance
       }
 
     }
+
 
     public void DownloadFile(ExcelPackage file, string fileName)
     {
