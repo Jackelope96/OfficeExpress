@@ -12,6 +12,7 @@
 			<siteMapNode title="Security" roles="Maintenance.Security" url="~/Maintenance/Security.aspx" class="list-group-item box" id="maintenance3"></siteMapNode>
 			<siteMapNode title="SystemSettings" roles="Maintenance.Access" url="~/Maintenance/SystemSettings.aspx" class="list-group-item box" id="maintenance4"></siteMapNode>
       <siteMapNode title="Reports" roles="Maintenance.Access" url="~/Maintenance/Reports.aspx" class="list-group-item box" id="maintenance4"></siteMapNode>
+      <siteMapNode title="Invoices" roles="Maintenance.Access" url="~/Maintenance/Invoices.aspx" class="list-group-item box" id="maintenance4"></siteMapNode>
      
 
 		</siteMapNode>
