@@ -224,24 +224,26 @@
 
   <script type="text/javascript" >
 
-   
-     $("#autocomplete").autocomplete({ source :["AI","AB"]});
-     $("#autocomplete").val("jaco");
-       
-     debugger;
     window.onload = function () {
       $("#autocomplete").hide();
       checkUser();
       checkDeduct();
     };
-
+    debugger;
+    var getUserList = function () {
+       ViewModel.CallServerMethod('getUserList', { ShowLoadingBar: true }, function (result) {
+         if (result.Success) {
+           $("#autocomplete").autocomplete({ source: result.Data });
+        }
+      });
+    }
     
     var checkUser = function () {
         ViewModel.CallServerMethod('GetUserType', { ShowLoadingBar: true }, function (result) {
           if (result.Success) {
             if (result.Data == 1) {
-              $().hide();
               $('#autocomplete').show();
+              getUserList();
             }
         }
       });

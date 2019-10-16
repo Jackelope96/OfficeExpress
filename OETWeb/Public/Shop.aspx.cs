@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Singular.Web;
 
@@ -335,7 +336,7 @@ namespace OETWeb.Public
     [WebCallable]
     public Result GetUserType()
     {
-      Result webRes = new Result(false);
+      Result webRes = new Result(true);
       try
       {
         var userid = Singular.Settings.CurrentUserID;
@@ -344,17 +345,40 @@ namespace OETWeb.Public
         {
           if (user.UserID == userid)
           {
-           webRes.Data = user.SecurityGroupID;
-           webRes.Success = true;
+            webRes.Data = user.SecurityGroupID;
+
           }
         }
-        
+
       }
       catch
       {
         webRes.Success = false;
       }
       return webRes;
+    }
+
+    [WebCallable]
+    public Result getUserList()
+    {
+      Result webRes = new Result(false);
+      try
+      {
+        List<string> users = new List<string>();
+        var userList = OETLib.BusinessObjects.Model.ROUserList.GetROUserList();
+        foreach (var user in userList)
+        {
+          users.Add(user.FirstName + " " + user.LastName);
+        }
+        webRes.Data = users.ToArray();
+        webRes.Success = true;
+      }
+      catch
+      {
+        webRes.Success = false;
+      }
+      return webRes;
+
     }
 
   }
