@@ -76,12 +76,16 @@
     <Compile Include="BusinessObjects\Model\UserList.cs" />
     <Compile Include="BusinessObjects\Model\UserOrders.cs" />
     <Compile Include="BusinessObjects\Model\UserOrdersList.cs" />
+    <Compile Include="BusinessObjects\Documents\Document.cs" />
+    <Compile Include="BusinessObjects\Documents\DocumentList.cs" />
     <Compile Include="BusinessObjects\Security\ROUserPaged.cs" />
     <Compile Include="BusinessObjects\Security\ROUserPagedList.cs" />
     <Compile Include="BusinessObjects\Security\User.cs" />
     <Compile Include="BusinessObjects\Security\UserList.cs" />
     <Compile Include="BusinessObjects\SystemSettings\Correspondence.cs" />
     <Compile Include="CommonData.cs" />
+    <Compile Include="General\GeneralSecurityGroupUser.cs" />
+    <Compile Include="General\GeneralSecurityGroupUserList.cs" />
     <Compile Include="General\GeneralUser.cs" />
     <Compile Include="General\GeneralUserList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

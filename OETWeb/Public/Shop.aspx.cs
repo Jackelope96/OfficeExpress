@@ -332,5 +332,30 @@ namespace OETWeb.Public
       return webres;
     }
 
+    [WebCallable]
+    public Result GetUserType()
+    {
+      Result webRes = new Result(false);
+      try
+      {
+        var userid = Singular.Settings.CurrentUserID;
+        var securityList = OETLib.Server.General.GeneralSecurityGroupUserList.GetGeneralSecurityGroupUserList();
+        foreach (var user in securityList)
+        {
+          if (user.UserID == userid)
+          {
+           webRes.Data = user.SecurityGroupID;
+           webRes.Success = true;
+          }
+        }
+        
+      }
+      catch
+      {
+        webRes.Success = false;
+      }
+      return webRes;
+    }
+
   }
 }

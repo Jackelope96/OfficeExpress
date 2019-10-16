@@ -6,6 +6,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
+  <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+
   <style type="text/css">
     .background-colour-highlight::before {
       content: "Collected";
@@ -78,14 +80,15 @@
       padding-top: 10px;
       margin-right: 10px;
     }
+
+    .dropdown{
+      float : left;
+    }
   </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-
-
   <%
-
 
     using (var h = Helpers)
     {
@@ -96,7 +99,9 @@
       }
       h.MessageHolder();
 
-
+      var userDropDown = h.HTML(
+         "<input type=\"text\" id=\"autocomplete\" class =\"dropdown\">"
+        );
       var cartAmount = ViewModel.totalMonthPrice;
 
       var FilterDiv1 = Helpers.DivC("row col-md-9");
@@ -108,6 +113,7 @@
         cartAmountlbl.AddClass("alignmentt");
         var btnCart = Helpers.Button("View cart", Singular.Web.ButtonMainStyle.Success, Singular.Web.ButtonSize.Tiny, Singular.Web.FontAwesomeIcon.shoppingCart);
         btnCart.AddBinding(Singular.Web.KnockoutBindingString.click, "ViewCart()");
+        
       }
 
       var panel = h.Div();
@@ -216,21 +222,41 @@
   %>
 
 
-  <script type="text/javascript">
+  <script type="text/javascript" >
 
+   
+     $("#autocomplete").autocomplete({ source :["AI","AB"]});
+     $("#autocomplete").val("jaco");
+       
+     debugger;
     window.onload = function () {
+      $("#autocomplete").hide();
+      checkUser();
       checkDeduct();
     };
+
+    
+    var checkUser = function () {
+        ViewModel.CallServerMethod('GetUserType', { ShowLoadingBar: true }, function (result) {
+          if (result.Success) {
+            if (result.Data == 1) {
+              $().hide();
+              $('#autocomplete').show();
+            }
+        }
+      });
+    }
+
     var ViewCart = function () {
       ViewModel.CallServerMethod('GetCart', { ShowLoadingBar: true }, function (result) {
         if (result.Success) {
-          //ViewModel.Cart.Set(result.Data);
           ViewModel.MyCartList.Set(result.Data);
           ViewModel.ShowCart(true);
         }
       });
     }
 
+   
     var checkDeduct = function () {
       ViewModel.CallServerMethod('GetDeductID', { ShowLoadingBar: true }, function (result) {
         if (result.Success) {

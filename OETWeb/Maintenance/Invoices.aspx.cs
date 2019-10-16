@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
-using System.Web;
-using OETLib.Security;
 using OfficeOpenXml;
 using Singular.Web;
 namespace OETWeb.Maintenance
@@ -44,7 +41,7 @@ namespace OETWeb.Maintenance
         List<OETLib.BusinessObjects.Model.ROUser> clientList; //List of current userID's
         List<OETLib.BusinessObjects.Model.myCart> userCart = new List<OETLib.BusinessObjects.Model.myCart>();
 
-        var activeCarts = userCartList.Where(x => x.UserID != null).GroupBy(x => x.UserID).Select(p => p.FirstOrDefault()).ToList();
+        var activeCarts = userCartList.Where(x => x.UserID != null && x.UserID != 0).GroupBy(x => x.UserID).Select(p => p.FirstOrDefault()).ToList();
         var activeClients = activeCarts.Select(x => x.UserID).ToList();
         clientList = retrieveUserList(activeClients);
 
@@ -59,11 +56,20 @@ namespace OETWeb.Maintenance
           ExportToExcel(userCartList, ws, client);
         }
 
-        var fileName = "Result_" + $"{DateTime.Now:dddd, d MMM, yyyy}" + ".xlsx";
-
-
+        var fileName = "TyckshopExpress_" + $"{DateTime.Now:dddd, d MMM, yyyy}" + ".xlsx";
         webRes.Success = true;
         webRes.Data = package.GetAsByteArray();
+
+        var doc = new OETLib.Documents.Document
+        {
+          DocumentName = fileName,
+          DocumentData = package.GetAsByteArray(),
+          DocumentHash = package.GetAsByteArray()
+        };
+        // var SaveDoc = doc.TrySave(typeof(DocumentList));
+        var docList = OETLib.Documents.DocumentList.GetDocumentList();
+        docList.Add(doc);
+        docList.Save();
 
       }
       catch (Exception e)

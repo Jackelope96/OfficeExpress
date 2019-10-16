@@ -13,7 +13,7 @@
       var toolbar = h.Toolbar();
       {
         toolbar.Helpers.HTML().Heading2("Invoices");
-        var excelBtn = h.Button(Singular.Web.DefinedButtonType.Export, "Export");
+        var excelBtn = h.Button(Singular.Web.DefinedButtonType.Export, "Generate Latest Ivoice");
         excelBtn.AddBinding(Singular.Web.KnockoutBindingString.click, "Export()");
 
       }
