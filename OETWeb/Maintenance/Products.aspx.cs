@@ -95,6 +95,7 @@ namespace OETWeb.Maintenance
       try
       {
         product.DeleteStatus = false;
+        product.ProductPrice *=(decimal)1.15;
         var SavedProductSaveHelper = product.TrySave(typeof(OETLib.BusinessObjects.Model.ProductList));
 
         // Inventory stuff
@@ -138,6 +139,7 @@ namespace OETWeb.Maintenance
       Result webres = new Result(false);
       try
       {
+        
         var SavedProductSaveHelper = Product.TrySave(typeof(OETLib.BusinessObjects.Model.ProductList));
         OETLib.BusinessObjects.Model.ProductList productlist = OETLib.BusinessObjects.Model.ProductList.GetProductList();
         webres.Success = true;

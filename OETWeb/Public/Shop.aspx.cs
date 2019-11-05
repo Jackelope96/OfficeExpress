@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Script.Serialization;
 using Singular.Web;
 
 namespace OETWeb.Public
@@ -69,54 +70,54 @@ namespace OETWeb.Public
 
     }
 
-    [WebCallable(Roles = new string[] { "Customer.Access" })]
-    public Result CreateOrder(OETLib.BusinessObjects.Model.Product product)
-    {
+    //[WebCallable(Roles = new string[] { "Customer.Access" })]
+    //public Result CreateOrder(OETLib.BusinessObjects.Model.Product product)
+    //{
 
-      Result webREs = new Result(false);
-      try
-      {
-        // Create the order
-        var order = new OETLib.BusinessObjects.Model.Order();
-        OrderProduct = OETLib.BusinessObjects.Model.ProductList.GetProductList().FirstOrDefault(d => d.ProductID == product.ProductID);
-
-
-        var orderdate = new DateTime();
-        orderdate = DateTime.Now;
-        var requireddate = new DateTime();
-        requireddate = DateTime.Now;
-
-        order.UserID = Singular.Settings.CurrentUserID;
-        order.OrderDate = orderdate;
-        order.ProcessStatusID = 1;
-        order.RequiredDate = requireddate;
-
-        // Save the order
-        var savedToOrder = order.TrySave(typeof(OETLib.BusinessObjects.Model.OrderList));
+    //  Result webREs = new Result(false);
+    //  try
+    //  {
+    //    // Create the order
+    //    var order = new OETLib.BusinessObjects.Model.Order();
+    //    OrderProduct = OETLib.BusinessObjects.Model.ProductList.GetProductList().FirstOrDefault(d => d.ProductID == product.ProductID);
 
 
-        // Return the just saved OrderID
-        var newOrder = new OETLib.BusinessObjects.Model.Order();
-        newOrder = GetOrder(Singular.Settings.CurrentUserID);
+    //    var orderdate = new DateTime();
+    //    orderdate = DateTime.Now;
+    //    var requireddate = new DateTime();
+    //    requireddate = DateTime.Now;
+
+    //    order.UserID = Singular.Settings.CurrentUserID;
+    //    order.OrderDate = orderdate;
+    //    order.ProcessStatusID = 1;
+    //    order.RequiredDate = requireddate;
+
+    //    // Save the order
+    //    var savedToOrder = order.TrySave(typeof(OETLib.BusinessObjects.Model.OrderList));
 
 
-        // Create orderDetail
-        var orderDetail = new OETLib.BusinessObjects.Model.OrderDetail();
-        orderDetail.OrderID = newOrder.OrderID;
-        orderDetail.ProductID = OrderProduct.ProductID;
-        orderDetail.ProductQuantity = product.ProductQuantity;
-        orderDetail.UnitPrice = product.ProductPrice;
-        // Save newly created OrderDetail
+    //    // Return the just saved OrderID
+    //    var newOrder = new OETLib.BusinessObjects.Model.Order();
+    //    newOrder = GetOrder(Singular.Settings.CurrentUserID);
 
-        webREs.Success = true;
-        webREs.Data = orderDetail;
-      }
-      catch
-      {
-        webREs.ErrorText = "There was an error adding your order";
-      }
-      return webREs;
-    }
+
+    //    // Create orderDetail
+    //    var orderDetail = new OETLib.BusinessObjects.Model.OrderDetail();
+    //    orderDetail.OrderID = newOrder.OrderID;
+    //    orderDetail.ProductID = OrderProduct.ProductID;
+    //    orderDetail.ProductQuantity = product.ProductQuantity;
+    //    orderDetail.UnitPrice = product.ProductPrice;
+    //    // Save newly created OrderDetail
+
+    //    webREs.Success = true;
+    //    webREs.Data = orderDetail;
+    //  }
+    //  catch
+    //  {
+    //    webREs.ErrorText = "There was an error adding your order";
+    //  }
+    //  return webREs;
+    //}
 
     [WebCallable(Roles = new string[] { "Customer.Access" })]
     public static OETLib.BusinessObjects.Model.Order GetOrder(int userid)
@@ -126,35 +127,43 @@ namespace OETWeb.Public
 
     [WebCallable(Roles = new string[] { "Customer.Access" })]
 
-    public Result CreateTheOrder(OETLib.BusinessObjects.Model.ProductList productlist)
+    public Result CreateTheOrder(OETLib.BusinessObjects.Model.ProductList productlist, int selectedUser)
     {
+      var user = 0;
       Result webRes = new Result(false);
       try
       {
-
         foreach (OETLib.BusinessObjects.Model.Product product in productlist)
         {
           if (product.ProductQuantity != 0)
           {
             var order = new OETLib.BusinessObjects.Model.Order();
-
-            order.UserID = Singular.Settings.CurrentUserID;
+            if (selectedUser != 0)
+            {
+              user = selectedUser;
+            }
+            else
+            {
+              user = Singular.Settings.CurrentUserID;
+            }
+            order.UserID = user;
             order.OrderDate = DateTime.Now;
             order.ProcessStatusID = 1;
             order.RequiredDate = order.OrderDate = DateTime.Now;
 
             //Save the order
             var savedToOrder = order.TrySave(typeof(OETLib.BusinessObjects.Model.OrderList));
+
             //Return the just saved OrderID
             var newOrder = new OETLib.BusinessObjects.Model.Order();
-            newOrder = GetOrder(Singular.Settings.CurrentUserID);
+            //newOrder = GetOrder(Singular.Settings.CurrentUserID);
+            newOrder = GetOrder(user);
             //Create orderDetail
             var orderDetail = new OETLib.BusinessObjects.Model.OrderDetail();
             orderDetail.OrderID = newOrder.OrderID;
             orderDetail.ProductID = product.ProductID;
             orderDetail.ProductQuantity = product.ProductQuantity;
             orderDetail.UnitPrice = (decimal)product.LinePrice;
-
 
             //Save newly created OrderDetail
             var saveToOrderDetail = orderDetail.TrySave(typeof(OETLib.BusinessObjects.Model.OrderDetailList));
@@ -173,7 +182,8 @@ namespace OETWeb.Public
             //Try and safe the new inventory record
             Inventory_record.TrySave(typeof(OETLib.BusinessObjects.Model.InventoryList));
 
-            OETLib.BusinessObjects.Model.myCartList mycartlist = OETLib.BusinessObjects.Model.myCartList.GetmyCartList(Singular.Settings.CurrentUserID);
+            //OETLib.BusinessObjects.Model.myCartList mycartlist = OETLib.BusinessObjects.Model.myCartList.GetmyCartList(Singular.Settings.CurrentUserID);
+            OETLib.BusinessObjects.Model.myCartList mycartlist = OETLib.BusinessObjects.Model.myCartList.GetmyCartList(user);
           }
 
         }
@@ -357,6 +367,11 @@ namespace OETWeb.Public
       }
       return webRes;
     }
+    public class User
+    {
+      public string label { get; set; }
+      public string value { get; set; }
+    }
 
     [WebCallable]
     public Result getUserList()
@@ -364,13 +379,16 @@ namespace OETWeb.Public
       Result webRes = new Result(false);
       try
       {
-        List<string> users = new List<string>();
+        //string[] users = dict
         var userList = OETLib.BusinessObjects.Model.ROUserList.GetROUserList();
+        List<User> users = new List<User>();
         foreach (var user in userList)
         {
-          users.Add(user.FirstName + " " + user.LastName);
+          users.Add(new User() { label = user.FirstName + " " + user.LastName, value = user.UserID.ToString() });
         }
-        webRes.Data = users.ToArray();
+        var jsonbuilder = new JavaScriptSerializer();
+        var json = jsonbuilder.Serialize(users);
+        webRes.Data = json;
         webRes.Success = true;
       }
       catch

@@ -82,8 +82,8 @@
     <script type="text/javascript">
 
         window.onload = function () {
-            autoComplete();
-            var i = setInterval(function () { TestUserOrderList(i); }, 2000);
+            //autoComplete();
+            //var i = setInterval(function () { TestUserOrderList(i); }, 2000);
         };
 
         function autoComplete() {

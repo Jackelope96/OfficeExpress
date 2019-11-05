@@ -139,7 +139,7 @@
             {
 
                dialogContent.Helpers.EditorRowFor(c => c.ProductName);
-               var r =  dialogContent.Helpers.EditorRowFor(c => c.ProductPrice);
+               var r =  dialogContent.Helpers.EditorRowFor(c => c.ProductPrice) ;
                 dialogContent.Helpers.EditorRowFor(c => c.CategoryID);
                 
                 dialogContent.Helpers.EditorRowFor(c => c.ItemCost);
