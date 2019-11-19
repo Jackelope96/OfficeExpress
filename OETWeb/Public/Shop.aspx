@@ -168,13 +168,9 @@
 				btnOrder.Style.Margin("10px");
 				var totalRow = Helpers.HTML(
 
-
 						"<label class =\"h2 ViewCart \" id =\"lblAmount\">0 </label>" +
 						 "<label class =\"h2  ViewCart\" id=\"mylbl\">Total :R </label>"
 						);
-
-
-
 			}
 			var dialog = h.Dialog(
 				 c => c.ShowCart == true,
@@ -184,7 +180,7 @@
 
 				dialog.Style.Width = "600";
 				dialog.Style.Height = "550";
-				var table = dialog.Helpers.TableFor<OETLib.BusinessObjects.Model.myCart>(c => c.MyCartList, false, false);//.OrderByDescending(d=>d.OrderDate)
+				var table = dialog.Helpers.TableFor<OETLib.BusinessObjects.Model.myCart>(c => c.MyCartList, false, false);
 				{
 					table.FirstRow.AddClass("table-responsive table table-bordered  thead-dark table-active");
 					var productname = table.FirstRow.AddReadOnlyColumn(c => c.ProductName);
@@ -468,7 +464,6 @@
 				if ((parseInt(item.SInfo.Properties[9]()) === parseInt(data.SInfo.Properties[6]()) && item.SInfo.Properties[6]() < productQuantity) || item.SInfo.Properties[6]() === 0) {
 
 					if (outofstock.indexOf(item.ProductName()) === -1) {
-						//b = data.ProductName() === item.ProductName();
 						outofstock.push(item.ProductName());
 					}
 				}
@@ -533,18 +528,6 @@
 				}
 			});
 		}
-
-
-
-
-
-
-
-
-
-
-
-
 
 	</script>
 </asp:Content>

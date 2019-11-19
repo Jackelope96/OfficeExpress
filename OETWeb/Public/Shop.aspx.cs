@@ -43,10 +43,7 @@ namespace OETWeb.Public
         _ShowCart = value;
       }
     }
-
-
     public OETLib.BusinessObjects.Model.OrderList OrderList { get; set; }
-
 
     protected override void Setup()
     {
@@ -65,9 +62,6 @@ namespace OETWeb.Public
       {
         totalMonthPrice = totalMonthPrice + (item.ProductQuantity * item.ProductPrice);
       }
-
-
-
     }
 
     //[WebCallable(Roles = new string[] { "Customer.Access" })]

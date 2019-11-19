@@ -66,7 +66,6 @@ namespace OETWeb.Maintenance
           DocumentData = package.GetAsByteArray(),
           DocumentHash = package.GetAsByteArray()
         };
-        // var SaveDoc = doc.TrySave(typeof(DocumentList));
         var docList = OETLib.Documents.DocumentList.GetDocumentList();
         docList.Add(doc);
         docList.Save();
@@ -101,7 +100,6 @@ namespace OETWeb.Maintenance
     {
       try
       {
-        // Create the new invoice in the database
         var newInvoice = new OETLib.BusinessObjects.Model.Invoice();
         newInvoice.UserID = UserId;
         newInvoice.InvoiceDate = DateTime.Now;
