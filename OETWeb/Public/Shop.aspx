@@ -7,6 +7,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
 	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 
 	<style type="text/css">
 		.background-colour-highlight::before {
@@ -100,9 +103,28 @@
 			h.MessageHolder();
 
 			var userDropDown = h.HTML(
+				"<div class =\"container\">"+
 				 "<input type=\"text\" id=\"autocomplete\" class =\"dropdown\">" +
 					"<input type=\"text\" id=\"autocomplete-hidden\" class =\"dropdown\">"
+				 
 				);
+
+			var CategoryOption = h.HTML(
+						"<form>"+
+						"<br>"  +
+						"<label class = \"checkbox-inline\">"+
+						"<input type = \"checkbox\" name = \"category\" value=\"1\"  onclick = \"sendCategory(1)\" > Snacks<br>" +
+						"</label>" +
+						"<label class = \"checkbox-inline\">"+
+						"<input type = \"checkbox\"  name = \"category\" value=\"2\" onclick = \"sendCategory(2)\"> Baked Goods"+
+						"</label>" +
+						 "<label class = \"checkbox-inline\">" +
+						"<input type = \"checkbox\" name = \"category\" value=\"3\" onclick = \"sendCategory(3)\"> On Demand"+
+						"</label>" +
+						"</form>"+
+						"<div>"
+
+					 );
 			var cartAmount = ViewModel.totalMonthPrice;
 
 			var FilterDiv1 = Helpers.DivC("row col-md-9");
@@ -217,8 +239,6 @@
 		}
 
 	%>
-
-
 	<script type="text/javascript" >
 
 		window.onload = function () {
@@ -286,6 +306,34 @@
 						box[0].checked = false;
 						box[1].checked = true;
 					}
+				}
+			});
+		}
+
+		var sendCategory = function (categoryid) {
+			var box = document.getElementsByName('category');
+			switch (categoryid) {
+				case 1:
+					box[1].checked = false;
+					box[2].checked = false;
+					break;
+				case 2:
+					box[0].checked = false;
+					box[2].checked = false;
+					break;
+				case 3:
+					box[0].checked = false;
+					box[1].checked = false;
+					break;
+				default:
+					box[0].checked = true;
+					box[1].checked = false;
+					box[2].checked = false;
+				 break;
+			}
+			ViewModel.CallServerMethod('GetCategory', { categoryid: categoryid, ShowLoadingBar: true }, function (result) {
+				if (result.Success) {
+					ViewModel.ProductList.Set(result.Data);
 				}
 			});
 		}
@@ -388,7 +436,6 @@
 			var totTest = 0;
 			ViewModel.ProductList().forEach(function (item) {
 				totTest += item.SInfo.Properties[4]();
-
 			});
 
 			if (totTest == 0) {
@@ -426,7 +473,6 @@
 			ViewModel.totalMonthPrice += parseFloat(total);
 			let lbl = document.getElementById('lblAmount');
 			lbl.innerText = total;
-
 
 		}
 
@@ -470,9 +516,9 @@
 			});
 			var redDiv = document.getElementById('outOfStock');
 			redDiv.innerText = '';
-			outofstock.forEach(function (item) {
-				redDiv.innerHTML += "Sorry, it seems that " + item + " is out of stock.<br/>";
-			});
+			//outofstock.forEach(function (item) {
+			//	redDiv.innerHTML += "Sorry, it seems that " + item + " is out of stock.<br/>";
+			//});
 			outofstock = [];
 			return !b;
 		}

@@ -94,6 +94,14 @@ namespace OETLib.BusinessObjects.Model
         ProductID = productId
       });
     }
+
+    public static ProductList GetProductListCategory(int categoryid)
+    {
+      return DataPortal.Fetch<ProductList>(new Criteria()
+      {
+        CategoryID = categoryid
+      });
+    }
     //Editing item
     public static ProductList GetEditProductList(int productId)
     {

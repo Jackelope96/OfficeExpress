@@ -136,7 +136,7 @@ namespace OETLib.BusinessObjects.Model
     public int CurrentInventoryQuantity { get; set; }
 
     public double LinePrice { get; set; }
-     
+
 
     public decimal ItemCost { get; set; }
 
@@ -144,12 +144,20 @@ namespace OETLib.BusinessObjects.Model
     {
       get
       {
-        if (CategoryID == 13)
+
+        switch (CategoryID)
         {
-          return "On Demand";
+          case 1:
+            return "Stock";
+            break;
+          case 2:
+            return "Baked";
+            break;
+          case 3:
+            return "On Demand";
+            break;
         }
-        else return "snack";
-        // return _CategoryName;
+        return "Stock";
       }
 
     }

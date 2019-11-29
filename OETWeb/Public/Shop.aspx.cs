@@ -393,5 +393,22 @@ namespace OETWeb.Public
 
     }
 
+    [WebCallable]
+    public Result GetCategory(int categoryid)
+    {
+      Result webRes = new Result(false);
+      try
+      {
+        OETLib.BusinessObjects.Model.ProductList productlist = OETLib.BusinessObjects.Model.ProductList.GetProductListCategory(categoryid);
+        webRes.Data = productlist;
+        webRes.Success = true;
+      }
+      catch
+      {
+        webRes.Success = false;
+      }
+      return webRes;
+    }
+
   }
 }
